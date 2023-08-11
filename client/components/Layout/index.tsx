@@ -1,14 +1,14 @@
 import HomeHeader from "../homeHeader";
 import Footer from "../footer";
 
-const Layout = ({children} : JSX.ElementChildrenAttribute) => {
+const Layout = ({ children }: JSX.ElementChildrenAttribute) => {
   return (
     <>
-      <HomeHeader />
+      {/* <HomeHeader /> */}
       {children}
       <Footer />
     </>
-  )
-}
+  );
+};
 
 export default Layout;
