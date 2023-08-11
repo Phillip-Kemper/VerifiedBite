@@ -15,9 +15,9 @@ contract VerifiedBite {
         _;
     }
 
-    function getAllSubmittedReviews() public view returns (Review[] memory) {
-        return submittedReviews;
-    }
+    function getReviewsByIndex(uint256 restaurantId) public view returns (Review[] memory) {
+    return submittedReviews[restaurantId];
+}
 
     function addReceiptCode(bytes32 receiptCode, uint256 restaurantId) public {
         unusedReceiptCodes[receiptCode] = restaurantId;
