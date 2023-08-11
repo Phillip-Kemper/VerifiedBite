@@ -21,9 +21,8 @@ contract VerifiedBite {
 
 
     function submitReview(bytes32 receiptCode, uint256 rating) public {
-        // is receipt code valid?
-        // what restaurant is it for?
-        uint256 restaurantId= 10;
+        uint256 restaurantId= unusedReceiptCodes[receiptCode];
+        require(restaurantId != 0, "Receipt code not found");
         submittedReviews[restaurantId].push(Review(restaurantId, rating));
     } 
 
