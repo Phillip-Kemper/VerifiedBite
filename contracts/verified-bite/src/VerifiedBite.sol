@@ -19,6 +19,9 @@ contract VerifiedBite {
         return submittedReviews;
     }
 
+    function addReceiptCode(bytes32 receiptCode, uint256 restaurantId) public {
+        unusedReceiptCodes[receiptCode] = restaurantId;
+    }
 
     function submitReview(bytes32 receiptCode, uint256 rating) public {
         uint256 restaurantId= unusedReceiptCodes[receiptCode];
