@@ -7,4 +7,7 @@ build:
 
 deploy-local:
 	anvil --fork-url $(INFURA) &
-	forge create --rpc-url $(INFURA) --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 src/VerifiedBite.sol:VerifiedBite --constructor-args $(ADMIN)
+	@sleep 3
+	forge create --rpc-url localhost:$(PORT) --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 src/VerifiedBite.sol:VerifiedBite --constructor-args $(ADMIN)
+
+down:
