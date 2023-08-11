@@ -15,9 +15,16 @@ contract VerifiedBite {
         _;
     }
 
-    function getReviewsByIndex(uint256 restaurantId) public view returns (Review[] memory) {
-    return submittedReviews[restaurantId];
-}
+    constructor() {
+        // Adding 3 sample reviews with more realistic uint256 IDs
+        uint256 userId1 = 1234567890123456789012345678901234567890;
+        uint256 userId2 = 2345678901234567890123456789012345678901;
+        uint256 userId3 = 3456789012345678901234567890123456789012;
+
+        submittedReviews[userId1].push(Review(101, 5)); // restaurantId: 101, rating: 5
+        submittedReviews[userId2].push(Review(102, 4)); // restaurantId: 102, rating: 4
+        submittedReviews[userId3].push(Review(103, 3)); // restaurantId: 103, rating: 3
+    }
 
     function addReceiptCode(bytes32 receiptCode, uint256 restaurantId) public {
         unusedReceiptCodes[receiptCode] = restaurantId;
