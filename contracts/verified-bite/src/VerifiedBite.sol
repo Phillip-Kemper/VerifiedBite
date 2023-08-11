@@ -6,7 +6,7 @@ contract VerifiedBite {
     mapping(bytes32 => uint256) public unusedReceiptCodes;
 
     struct Review {
-        uint256 restaurantId;
+        address userId;
         uint256 rating;
     }
 
@@ -16,14 +16,13 @@ contract VerifiedBite {
     }
 
     constructor() {
-        // Adding 3 sample reviews with more realistic uint256 IDs
         uint256 userId1 = 1234567890123456789012345678901234567890;
         uint256 userId2 = 2345678901234567890123456789012345678901;
         uint256 userId3 = 3456789012345678901234567890123456789012;
 
-        submittedReviews[userId1].push(Review(101, 5)); // restaurantId: 101, rating: 5
-        submittedReviews[userId2].push(Review(102, 4)); // restaurantId: 102, rating: 4
-        submittedReviews[userId3].push(Review(103, 3)); // restaurantId: 103, rating: 3
+        submittedReviews[userId1].push(Review(0x6CbAa746E1F17804E9b2b81222C9f4a0A50a64A9, 5));
+        submittedReviews[userId2].push(Review(0x6CbAa746E1F17804E9b2b81222C9f4a0A50a64A9, 4));
+        submittedReviews[userId3].push(Review(0x6CbAa746E1F17804E9b2b81222C9f4a0A50a64A9, 3));
     }
 
     function addReceiptCode(bytes32 receiptCode, uint256 restaurantId) public {
@@ -31,9 +30,8 @@ contract VerifiedBite {
     }
 
     function submitReview(bytes32 receiptCode, uint256 rating) public {
-        uint256 restaurantId= unusedReceiptCodes[receiptCode];
+        uint256 restaurantId = unusedReceiptCodes[receiptCode];
         require(restaurantId != 0, "Receipt code not found");
-        submittedReviews[restaurantId].push(Review(restaurantId, rating));
-    } 
-
+        submittedReviews[restaurantId].push(Review(msg.sender, rating));
+    }
 }
