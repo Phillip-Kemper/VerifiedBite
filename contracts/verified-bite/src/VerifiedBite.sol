@@ -15,6 +15,10 @@ contract VerifiedBite {
         _;
     }
 
+    function getAllSubmittedReviews() public view returns (Review[] memory) {
+        return submittedReviews;
+    }
+
 
     function submitReview(bytes32 receiptCode, uint256 rating) public {
         // is receipt code valid?
