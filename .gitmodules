@@ -1,0 +1,3 @@
+[submodule "contracts/verified-bite/lib/forge-std"]
+	path = contracts/verified-bite/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
