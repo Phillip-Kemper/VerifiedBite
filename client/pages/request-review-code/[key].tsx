@@ -28,7 +28,7 @@ const Blog: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [reviewCode, setReviewCode] = useState("");
 
-  const qrCodeUrl = `http://localhost:3001/submit-review?code=${reviewCode}`;
+  const qrCodeUrl = `http://localhost:3000/submit-review?code=${reviewCode}`;
 
   const handleRequestReviewCode = async () => {
     setIsLoading(true);
@@ -70,7 +70,11 @@ const Blog: NextPage = () => {
                     </Typography>
                   </Box>
                   <Box sx={{ mt: 3, display: "flex", justifyContent: "center" }}>
-                    <QRCode value={qrCodeUrl} size={256} />
+                    <Box sx={{ mt: 3, display: "flex", justifyContent: "center" }}>
+                      <a href={qrCodeUrl} target="_blank" rel="noopener noreferrer">
+                        <QRCode value={qrCodeUrl} size={256} />
+                      </a>
+                    </Box>
                   </Box>
                 </Box>
               </Box>

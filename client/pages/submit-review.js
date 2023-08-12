@@ -11,10 +11,13 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import Link from "next/link";
+import { ethers } from "ethers";
 
 import MediaCard from "../components/mediaCard";
 import { Button, TextField } from "@mui/material";
 import Rating from "@mui/material/Rating";
+import contractAddressInfo from "../web3/contractAddress.json";
+import contractInfo from "../web3/VerifiedBite.json";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -25,9 +28,10 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Blog = () => {
+  const contractAddress = contractAddressInfo.address;
   const router = useRouter();
   const [orderCode, setOrderCode] = React.useState("");
-  const [rating, setRating] = (React.useState < number) | (null > null);
+  const [rating, setRating] = React.useState(0);
 
   const handleOrderCodeChange = (event) => {
     const value = event.target.value;
@@ -51,9 +55,7 @@ const Blog = () => {
     const initializeProvider = async () => {
       if (window.ethereum) {
         await window.ethereum.request({ method: "eth_requestAccounts" });
-        console.log("output: " + JSON.stringify(ethers.providers));
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        console.log("provider: " + provider);
         setProvider(provider);
       }
     };
@@ -69,13 +71,13 @@ const Blog = () => {
     await window.ethereum.request({ method: "eth_requestAccounts" });
     let signer = provider.getSigner();
     let contract = new ethers.Contract(contractAddress, contractInfo.abi, signer);
-    console.log("check get admin: " + (await contract.admin()));
-    let receiptCode = ethers.utils.formatBytes32String(`${orderCode}`);
-    // await contract.addReceiptCode(receiptCode, restaurantId);
-    // console.log("success addReceiptCode");
-    // let rating = 4;
-    await contract.submitReview(receiptCode, rating);
-    console.log("success submitReview: " + receiptCode + " " + rating);
+    let receiptCode = `${orderCode}`;
+    try {
+      await contract.submitReview(receiptCode, rating);
+    } catch (err) {
+      alert("Invalid code: Code has been used before.");
+      return;
+    }
     router.push(`/`);
   };
 
