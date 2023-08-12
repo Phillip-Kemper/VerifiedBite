@@ -14,7 +14,7 @@ const HomeHeader = () => {
         </Box>
 
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Typography variant="h4">Don't Trust Your Food. Verify It!</Typography>
+          <Typography variant="h4">Don{"'"}t Trust Your Food. Verify It!</Typography>
         </Box>
       </Box>
     </Link>
