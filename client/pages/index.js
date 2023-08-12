@@ -13,6 +13,7 @@ import contractAddressInfo from "../web3/contractAddress.json";
 import MediaCard from "../components/mediaCard";
 import { Button, Typography } from "@mui/material";
 
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
