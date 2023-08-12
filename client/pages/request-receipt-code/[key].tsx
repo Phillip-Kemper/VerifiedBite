@@ -46,12 +46,18 @@ const Blog: NextPage = () => {
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, mt: 20 }}>
+      <Box sx={{ flexGrow: 1, mt: 15, mb: 15 }}>
         <Grid container spacing={2}>
           {!receiptCode ? (
             <Grid item xs={12}>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
-                <Button variant="contained" color="primary" onClick={handleRequestReceiptCode} disabled={isLoading}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleRequestReceiptCode}
+                  disabled={isLoading}
+                  sx={{ width: "50%", height: "4rem", fontSize: "1.2rem" }}
+                >
                   {isLoading ? "Loading..." : "Request Review Code"}
                 </Button>
               </Box>
