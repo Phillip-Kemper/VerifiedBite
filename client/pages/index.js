@@ -14,6 +14,7 @@ import { ethers } from "ethers";
 import { getRestaurantById, restaurants } from "../constants/restaurants";
 import { useEffect, useState } from "react";
 import contractInfo from "../web3/VerifiedBite.json";
+import contractAddressInfo from "../web3/contractAddress.json";
 import keccak256 from "keccak256";
 import MediaCard from "../components/mediaCard";
 import { Button } from "@mui/material";
@@ -27,7 +28,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Blog = () => {
-  const contractAddress = "0xd3b893cd083f07Fe371c1a87393576e7B01C52C6";
+  const contractAddress = contractAddressInfo.address;
   const [provider, setProvider] = React.useState(null);
   // const [network, setNetwork] = React.useState("");
   // const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
@@ -67,36 +68,32 @@ const Blog = () => {
   };
 
   const interactWithContract2 = async () => {
-    // let receiptCode2 = ethers.utils.hexlify(123123);
     await window.ethereum.request({ method: "eth_requestAccounts" });
     let signer = provider.getSigner();
     let contract = new ethers.Contract(contractAddress, contractInfo.abi, signer);
-    console.log("admin: " + (await contract.admin()));
-    let restaurantId = 123;
-    // compute keccak256 hash of receiptCode
-    // let receiptCodeHash = "0x" + keccak256(`${receiptCode}`).toString("hex"); //"0x43244635c14605fdbe23fa89b5cf12bd14a14bfb9420f66788dd6914a31d8c7b";
-    // let receiptCodeHash = keccak256(`${receiptCode}`).toString("hex"); //"0x43244635c14605fdbe23fa89b5cf12bd14a14bfb9420f66788dd6914a31d8c7b";
-    // let receiptCodeHash = keccak256(`${receiptCode}`); //"0x43244635c14605fdbe23fa89b5cf12bd14a14bfb9420f66788dd6914a31d8c7b";
-    // var receiptCodeHash = "0x43244635c14605fdbe23fa89b5cf12bd14a14bfb9420f66788dd6914a31d8c7b";
-    // print type of receiptCodeHash
-
-    // receiptCodeHash = ethers.utils.formatBytes32String(receiptCodeHash);
-
+    let restaurantId = 2;
     let receiptCode = "123123";
-    // var receiptCodeHash = ethers.utils.keccak256(ethers.enc(`${receiptCode}`));
     var receiptCodeHash = ethers.utils.solidityKeccak256(["string"], [`${receiptCode}`]);
-    console.log("type receiptCodeHash: " + typeof receiptCodeHash);
-    console.log("receiptCodeHash: " + JSON.stringify(receiptCodeHash));
     receiptCodeHash = ethers.utils.arrayify(receiptCodeHash);
-    console.log("receiptCodeHash: " + JSON.stringify(receiptCodeHash));
     await contract.addReceiptCode(receiptCodeHash, restaurantId);
-    console.log("success addReceiptCode");
-    const result = await contract.unusedReceiptCodes(receiptCodeHash);
-    console.log("unusedReceiptCodes: " + JSON.stringify(result));
-    let rating = 2;
-    await contract.submitReview(receiptCode, rating);
-    console.log("success submitReview: " + receiptCode + " " + rating);
+    // const result = await contract.unusedReceiptCodes(receiptCodeHash);
   };
+
+  // useEffect that fetches the restaurant data from the blockchain
+  useEffect(() => {
+    const getRestaurantData = async () => {
+      if (provider) {
+        const contract = new ethers.Contract(contractAddress, contractInfo.abi, provider);
+        restaurants.forEach(async (restaurant) => {
+          const restaurantId = restaurant.id;
+          const restaurantReviews = await contract.getReviews(restaurantId);
+          console.log("restaurantReviews " + restaurantId + ": " + JSON.stringify(restaurantReviews));
+        });
+      }
+    };
+
+    getRestaurantData();
+  }, [provider]);
 
   return (
     <>
@@ -106,7 +103,13 @@ const Blog = () => {
           <button onClick={interactWithContract}>Interact with Contract</button>
           <button onClick={interactWithContract2}>Interact with Contract 2</button>
           {restaurants.map((restaurant) => (
-            <MediaCard title={restaurant.name} rating={4} numberOfReviews={15} imageUrl={restaurant.imageURL} restaurantId={restaurant.id}/>
+            <MediaCard
+              title={restaurant.name}
+              rating={4}
+              numberOfReviews={15}
+              imageUrl={restaurant.imageURL}
+              restaurantId={restaurant.id}
+            />
           ))}
         </Box>
       </Box>
