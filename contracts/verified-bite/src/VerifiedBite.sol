@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-contract VerifiedBite {
+import { ERC2771Context } from "@gelatonetwork/relay-context/contracts/vendor/ERC2771Context.sol";
+
+contract VerifiedBite is ERC2771Context {
     address public admin;
     mapping(uint256 => Review[]) public submittedReviews;
     mapping(bytes32 => uint256) public unusedReceiptCodes;
@@ -21,11 +23,11 @@ contract VerifiedBite {
     }
 
     modifier onlyAdmin() {
-        require(msg.sender == admin, "Only admin can call this function");
+        require(_msgSender() == admin, "Only admin can call this function");
         _;
     }
 
-    constructor(address _admin) {
+    constructor(address _admin, address trustedForwarder) ERC2771Context(trustedForwarder) {
         admin = _admin;
         uint256 restaurantId1 = 1;
         uint256 restaurantId2 = 2;
@@ -54,7 +56,7 @@ contract VerifiedBite {
 
         uint256 restaurantId = unusedReceiptCodes[receiptCodeHash];
         require(restaurantId != 0, "Receipt code not found");
-        submittedReviews[restaurantId].push(Review(msg.sender, rating));
+        submittedReviews[restaurantId].push(Review(_msgSender(), rating));
 
         unusedReceiptCodes[receiptCodeHash] = 0;
     }

@@ -7,7 +7,7 @@ import {VerifiedBite} from "../src/VerifiedBite.sol";
 contract VerifiedBiteTest is Test {
     VerifiedBite verifiedBite;
     function setUp() public {
-        verifiedBite = new VerifiedBite(address(this));
+        verifiedBite = new VerifiedBite(address(this), address(this));
     }
 
     function test_AdminSetCorrectly() public {
