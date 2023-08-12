@@ -35,7 +35,7 @@ const Blog = () => {
         console.log("provider: " + provider);
         setProvider(provider);
         const network = await provider.getNetwork();
-        if(network.chainId != 1442) {
+        if (network.chainId != 1442) {
           setIsPolygonZkEVM(false);
           setProvider(new ethers.providers.JsonRpcProvider("https://rpc.public.zkevm-test.net/"));
         }
@@ -47,34 +47,27 @@ const Blog = () => {
 
   useEffect(() => {
     const getRestaurantData = async () => {
-      if (provider) {
+      if (provider && restaurant) {
         const contract = new ethers.Contract(contractAddress, contractInfo.abi, provider);
         const restaurantReviews = await contract.getReviews(restaurant.id);
         setReviews(
           restaurantReviews.map((review) => ({ address: review[0], rating: parseInt(review[1]["_hex"], 16) }))
         );
-
-        // restaurants.forEach(async (restaurant) => {
-        //   const restaurantId = restaurant.id;
-        //   console.log("restaurantReviews: " + JSON.stringify(restaurantReviews));
-        //   const restaurantReviewsReformatted = restaurantReviews.map((review) => {
-        //     return [review[0], parseInt(review[1]["_hex"], 16)];
-        //   });
-        //   reviews[restaurantId] = restaurantReviewsReformatted;
-        //   setReviews(Object.assign({}, reviews, { restaurantId: restaurantReviewsReformatted }));
-        //   console.log("restaurantReviews " + restaurantId + ": " + JSON.stringify(restaurantReviewsReformatted));
-        // });
       }
     };
     getRestaurantData();
-  }, [provider]);
+  }, [provider, restaurant]);
 
   const averageRating =
     reviews.length > 0 ? reviews.reduce((total, review) => total + review.rating, 0) / reviews.length : 0;
 
   return (
     <>
-      {!isPolygonZkEVM && <Typography variant="h5">For more than just read access and submitting your own review, pls connect wallet to Polygon zkEVM Testnet</Typography>}      
+      {!isPolygonZkEVM && (
+        <Typography variant="h5">
+          For more than just read access and submitting your own review, pls connect wallet to Polygon zkEVM Testnet
+        </Typography>
+      )}
       <Box sx={{ flexGrow: 1, mt: 2 }}>
         {restaurant ? (
           <Grid container direction={"column"} spacing={2} alignContent={"center"} justifyContent={"center"}>

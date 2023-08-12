@@ -85,8 +85,9 @@ const Blog = () => {
     };
 
     try {
-      await relay.sponsoredCallERC2771(request, provider, process.env.PROVIDER_URL);
+      await relay.sponsoredCallERC2771(request, provider, process.env.NEXT_PUBLIC_GELATO_API_KEY);
     } catch (err) {
+      console.log("output: " + err + " " + JSON.stringify(err));
       alert("Invalid code: Code has been used before.");
       return;
     }
