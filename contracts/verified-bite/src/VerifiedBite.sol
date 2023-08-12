@@ -23,22 +23,27 @@ contract VerifiedBite {
 
     constructor(address _admin) {
         admin = _admin;
-        uint256 userId1 = 1234567890123456789012345678901234567890;
-        uint256 userId2 = 2345678901234567890123456789012345678901;
-        uint256 userId3 = 3456789012345678901234567890123456789012;
+        uint256 restaurantId1 = 1;
+        uint256 restaurantId2 = 2;
+        uint256 restaurantId3 = 3;
 
-        submittedReviews[userId1].push(Review(0x6CbAa746E1F17804E9b2b81222C9f4a0A50a64A9, 5));
-        submittedReviews[userId2].push(Review(0x6CbAa746E1F17804E9b2b81222C9f4a0A50a64A9, 4));
-        submittedReviews[userId3].push(Review(0x6CbAa746E1F17804E9b2b81222C9f4a0A50a64A9, 3));
+        submittedReviews[restaurantId1].push(Review(0x6CbAa746E1F17804E9b2b81222C9f4a0A50a64A9, 5));
+        submittedReviews[restaurantId2].push(Review(0x6CbAa746E1F17804E9b2b81222C9f4a0A50a64A9, 4));
+        submittedReviews[restaurantId3].push(Review(0x6CbAa746E1F17804E9b2b81222C9f4a0A50a64A9, 3));
+    }
+
+    function getReviews(uint256 restaurantId) public view returns (Review[] memory) {
+        return submittedReviews[restaurantId];
     }
 
     function addReceiptCode(bytes32 receiptCode, uint256 restaurantId) public onlyAdmin() {
         unusedReceiptCodes[receiptCode] = restaurantId;
     }
 
-    function submitReview(bytes32 receiptCode, uint256 rating) public {
+    function submitReview(bytes32 receiptCode, uint256 rating) public validRating(rating) {
         uint256 restaurantId = unusedReceiptCodes[receiptCode];
         require(restaurantId != 0, "Receipt code not found");
         submittedReviews[restaurantId].push(Review(msg.sender, rating));
     }
+
 }
