@@ -20,7 +20,7 @@ export default function MediaCard({ title, rating, restaurantId, numberOfReviews
   const router = useRouter();
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 350 }}>
       <CardMedia component="img" height="140" image={imageUrl} />
       <CardContent>
         <Typography variant="h5" component="div">
@@ -30,7 +30,9 @@ export default function MediaCard({ title, rating, restaurantId, numberOfReviews
         <Typography>({numberOfReviews} reviews)</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={() => router.push('/restaurant/' + restaurantId)}>Learn More</Button>
+        <Button size="small" onClick={() => router.push("/restaurant/" + restaurantId)}>
+          Learn More
+        </Button>
       </CardActions>
     </Card>
   );
