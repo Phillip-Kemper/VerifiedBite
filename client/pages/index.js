@@ -14,7 +14,7 @@ import { ethers } from "ethers";
 import { getRestaurantById, restaurants } from "../constants/restaurants";
 import { useEffect, useState } from "react";
 import contractInfo from "../web3/VerifiedBite.json";
-
+import keccak256 from "keccak256";
 import MediaCard from "../components/mediaCard";
 import { Button } from "@mui/material";
 
@@ -27,7 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Blog = () => {
-  const contractAddress = "0x38628490c3043E5D0bbB26d5a0a62fC77342e9d5";
+  const contractAddress = "0xd9abC93F81394Bd161a1b24B03518e0a570bDEAd";
   const [provider, setProvider] = React.useState(null);
   // const [network, setNetwork] = React.useState("");
   // const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
@@ -67,14 +67,20 @@ const Blog = () => {
   };
 
   const interactWithContract2 = async () => {
+    // let receiptCode2 = ethers.utils.hexlify(123123);
     await window.ethereum.request({ method: "eth_requestAccounts" });
     let signer = provider.getSigner();
     let contract = new ethers.Contract(contractAddress, contractInfo.abi, signer);
-    console.log("admin" + (await contract.admin()));
-    let receiptCode = ethers.utils.formatBytes32String("123123");
-    await contract.addReceiptCode(receiptCode, restaurantId);
+    console.log("admin: " + (await contract.admin()));
+    let restaurantId = 123;
+    let receiptCode = 123123;
+    // compute keccak256 hash of receiptCode
+    let receiptCodeHash = keccak256(receiptCode2).toString("hex"); //"0x43244635c14605fdbe23fa89b5cf12bd14a14bfb9420f66788dd6914a31d8c7b";
+    // let receiptCodeHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(receiptCode));
+    console.log("receiptCodeHash: " + JSON.stringify(receiptCodeHash));
+    await contract.addReceiptCode(receiptCodeHash, restaurantId);
     console.log("success addReceiptCode");
-    let rating = 4;
+    let rating = 2;
     await contract.submitReview(receiptCode, rating);
     console.log("success submitReview: " + receiptCode + " " + rating);
   };
@@ -85,12 +91,10 @@ const Blog = () => {
         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", gap: 2 }}>
           {/* Connected to network: {network} */}
           <button onClick={interactWithContract}>Interact with Contract</button>
-          {restaurants.map(restaurant => <MediaCard
-            title={restaurant.name}
-            rating={4}
-            numberOfReviews={15}
-            imageUrl={restaurant.imageURL}
-          />)}
+          <button onClick={interactWithContract2}>Interact with Contract 2</button>
+          {restaurants.map((restaurant) => (
+            <MediaCard title={restaurant.name} rating={4} numberOfReviews={15} imageUrl={restaurant.imageURL} />
+          ))}
         </Box>
       </Box>
       <Box sx={{ position: "fixed", bottom: "2rem", right: "2rem" }}>
