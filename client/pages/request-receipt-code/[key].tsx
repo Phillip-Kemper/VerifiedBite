@@ -37,7 +37,8 @@ const Blog: NextPage = () => {
       setReceiptCode(response.data.receiptCode);
     } catch (error) {
       console.error(error);
-      setReceiptCode("123456");
+      alert(error);
+      // setReceiptCode("123456");
     } finally {
       setIsLoading(false);
     }
