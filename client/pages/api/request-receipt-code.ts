@@ -14,8 +14,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const rnd = Math.floor(Math.random() * 900000) + 100000;
   const receiptCode = `${rnd}`;
   const receiptCodeHash = ethers.utils.solidityKeccak256(["string"], [`${receiptCode}`]);
-  const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
-  const wallet = new ethers.Wallet("0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80", provider);
+  // const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
+  const provider = new ethers.providers.JsonRpcProvider(process.env.PROVIDER_URL);
+  const privateKey = process.env.PRIVATE_KEY;
+  const wallet = new ethers.Wallet(privateKey, provider);
   const contract = new ethers.Contract(contractAddress, contractInfo.abi, provider);
   const contractWithSigner = contract.connect(wallet);
 
