@@ -5,28 +5,36 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <>
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by{' '}
-        <span className={styles.logo}>
-          <Image src="/polygon.png" alt="Polygon Logo" width={172} height={30}/>
-        </span>
-      </a>
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Built By{' '}
-        <span className={styles.logo}>
-          <Image src="/dao.jpeg" alt="Pretzel DAO" width={42} height={42} />
-        </span>
-      </a>
-      </>
+      <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 15 }}>
+        <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 2 }}>
+          Powered by
+          <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 2 }}>
+            <a href="https://polygon.technology/polygon-zkevm" target="_blank" rel="noopener noreferrer">
+              <span className={styles.logo}>
+                <Image src="/polygon.png" alt="Polygon Logo" width={172} height={30} />
+              </span>
+            </a>
+            <a href="https://www.gelato.network/" target="_blank" rel="noopener noreferrer">
+              <span className={styles.logo}>
+                <Image src="/gelato.png" alt="Logo" width={120} height={60} />
+              </span>
+            </a>
+            <a href="https://polygon.technology/polygon-zkevm" target="_blank" rel="noopener noreferrer">
+              <span className={styles.logo}>
+                <Image src="/fe-logo.png" alt="Logo" width={33} height={40} />
+              </span>
+            </a>
+          </Box>
+        </Box>
+        <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 2 }}>
+          Built by
+          <a href="https://www.pretzeldao.com/" target="_blank" rel="noopener noreferrer">
+            <span className={styles.logo}>
+              <Image src="/dao.jpeg" alt="Pretzel DAO" width={60} height={60} />
+            </span>
+          </a>
+        </Box>
+      </Box>
     </footer>
   );
 };
