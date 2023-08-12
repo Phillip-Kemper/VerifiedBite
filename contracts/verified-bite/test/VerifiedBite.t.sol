@@ -10,7 +10,11 @@ contract VerifiedBiteTest is Test {
         verifiedBite = new VerifiedBite(address(this));
     }
 
-    function test_AddingReceiptCode() public pure{
-        assert(true);
+    function test_AdminSetCorrectly() public {
+        assertEq(verifiedBite.admin(),address(this));
     }
+
+    // function test_SubmittedReviewsSetCorrectly() public {
+    //     assertEq(verifiedBite.submittedReviews(), 5);
+    // }
 }
