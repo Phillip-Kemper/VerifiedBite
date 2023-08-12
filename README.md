@@ -22,3 +22,5 @@ To make it as easy as possible for customers to submit reviews, all transactions
 *We use Gelato to enable gasless transactions.*
 
 *VerifiedBite is deployed on Polygon zkEVM for highly efficient transactions.*
+
+*Check out ./contracts/fe/ for a simplified version of our contract written in FE.*
