@@ -88,7 +88,7 @@ const Blog = () => {
         restaurants.forEach(async (restaurant) => {
           const restaurantId = restaurant.id;
           const restaurantReviews = await contract.getReviews(restaurantId);
-          console.log("restaurantReviews: " + JSON.stringify(restaurantReviews));
+          // console.log("restaurantReviews: " + JSON.stringify(restaurantReviews));
           const restaurantReviewsReformatted = restaurantReviews.map((review) => {
             return [review[0], parseInt(review[1]["_hex"], 16)];
           });
@@ -112,14 +112,14 @@ const Blog = () => {
               <MediaCard
                 key={restaurant.id}
                 title={restaurant.name}
-                rating={reviews[restaurant.id].reduce((acc, cur) => acc + cur[1]) / reviews[restaurant.id].length}
+                rating={reviews[restaurant.id].reduce((acc, cur) => acc + cur[1], 0) / reviews[restaurant.id].length}
                 numberOfReviews={reviews[restaurant.id].length}
                 imageUrl={restaurant.imageURL}
                 restaurantId={restaurant.id}
               />
             ) : (
               <MediaCard
-                key={restaurant.id}
+                key={restaurant.id + "empty"}
                 title={restaurant.name}
                 rating={0}
                 numberOfReviews={0}
