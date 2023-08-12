@@ -45,6 +45,37 @@
     {
       "inputs": [
         {
+          "internalType": "uint256",
+          "name": "restaurantId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getReviews",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "userId",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "rating",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct VerifiedBite.Review[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "bytes32",
           "name": "receiptCode",
           "type": "bytes32"
@@ -110,23 +141,24 @@
     }
   ],
   "bytecode": {
-    "object": "0x608060405234801561001057600080fd5b5060405161058238038061058283398101604081905261002f91610246565b600080546001600160a01b039283166001600160a01b031991821617825560016020818152604080518082018252736cbaa746e1f17804e9b2b81222c9f4a0a50a64a980825260058285019081527fd86039480f65c30891085d59fb6dfac220ac42d42d8be7cf66a935b5f252de0180548088018255908952925160029384027fffce30f8d2e2132f57cc1fe276d87acfcc2b8af3111c631d055151f95522796781018054928c16928a169290921790915590517fffce30f8d2e2132f57cc1fe276d87acfcc2b8af3111c631d055151f955227968909101558484528251808401845281815260048186019081527f25b6d7e6c6556014af271ecc05ab0505328cce8e4c44a37066d86cffe1035bd280548089018255908a5291519184027f22059ee03aea28af4860fb8412eec84fa94aa60611c3d304f85ad985e18b3c0581018054938c16938a1693909317909255517f22059ee03aea28af4860fb8412eec84fa94aa60611c3d304f85ad985e18b3c06909101558484528251808401909352825260039282019283527f86e06bd84151fd6584473c585985495703fa27a5bf911ecf114e201ac339eb1b8054948501815590955251919093027fe960fa65af90dee1564af0c68272ed1c0ccdebc50c3e36e9af187d6fbc74540081018054929095169190921617909255517fe960fa65af90dee1564af0c68272ed1c0ccdebc50c3e36e9af187d6fbc74540190910155610276565b60006020828403121561025857600080fd5b81516001600160a01b038116811461026f57600080fd5b9392505050565b6102fd806102856000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c80632a16854c1461005c578063c954320914610093578063e4758202146100a8578063f851a440146100bb578063f9153514146100e6575b600080fd5b61006f61006a36600461028c565b610114565b604080516001600160a01b0390931683526020830191909152015b60405180910390f35b6100a66100a136600461028c565b61015a565b005b6100a66100b636600461028c565b610216565b6000546100ce906001600160a01b031681565b6040516001600160a01b03909116815260200161008a565b6101066100f43660046102ae565b60026020526000908152604090205481565b60405190815260200161008a565b6001602052816000526040600020818154811061013057600080fd5b6000918252602090912060029091020180546001909101546001600160a01b039091169250905082565b600082815260026020526040812054908190036101b75760405162461bcd60e51b8152602060048201526016602482015275149958d95a5c1d0818dbd919481b9bdd08199bdd5b9960521b60448201526064015b60405180910390fd5b6000908152600160208181526040808420815180830190925233825281830195865280548085018255908552919093209251600290910290920180546001600160a01b0319166001600160a01b03909316929092178255915191015550565b6000546001600160a01b0316331461027a5760405162461bcd60e51b815260206004820152602160248201527f4f6e6c792061646d696e2063616e2063616c6c20746869732066756e6374696f6044820152603760f91b60648201526084016101ae565b60009182526002602052604090912055565b6000806040838503121561029f57600080fd5b50508035926020909101359150565b6000602082840312156102c057600080fd5b503591905056fea2646970667358221220228a2007878475de7e588127e7ded54f495c619c96a315d0e3f85d9e86a87f8f64736f6c63430008150033",
-    "sourceMap": "65:1491:20:-:0;;;572:549;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;610:5;:14;;-1:-1:-1;;;;;610:14:20;;;-1:-1:-1;;;;;;610:14:20;;;;;;;839:25;;;;;870:53;;;;;;;877:42;870:53;;;921:1;870:53;;;;;;839:25;:85;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;934:25;;;965:53;;;;;;;;;;1016:1;965:53;;;;;;934:25;:85;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1029:25;;;1060:53;;;;;;;;;;1111:1;1060:53;;;;;;1029:25;:85;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;65:1491;;14:290:22;84:6;137:2;125:9;116:7;112:23;108:32;105:52;;;153:1;150;143:12;105:52;179:16;;-1:-1:-1;;;;;224:31:22;;214:42;;204:70;;270:1;267;260:12;204:70;293:5;14:290;-1:-1:-1;;;14:290:22:o;:::-;65:1491:20;;;;;;",
+    "object": "0x608060405234801561001057600080fd5b5060405161068738038061068783398101604081905261002f91610246565b600080546001600160a01b039283166001600160a01b031991821617825560016020818152604080518082018252736cbaa746e1f17804e9b2b81222c9f4a0a50a64a980825260058285019081527fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f80548088018255908952925160029384027f66b32740ad8041bcc3b909c72d7e1afe60094ec55e3cde329b4b3a28501d826c81018054928c16928a169290921790915590517f66b32740ad8041bcc3b909c72d7e1afe60094ec55e3cde329b4b3a28501d826d909101558484528251808401845281815260048186019081527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f80548089018255908a5291519184027f9feccf6caa602894c8105bdda7f81b2a7bb7de7dba1f18af92d8d057b708cb4181018054938c16938a1693909317909255517f9feccf6caa602894c8105bdda7f81b2a7bb7de7dba1f18af92d8d057b708cb42909101558484528251808401909352825260039282019283527f7dfe757ecd65cbd7922a9c0161e935dd7fdbcc0e999689c7d31633896b1fc60b8054948501815590955251919093027f73661f06600408586227726a59a462d4c7b87e9a7813effa8f25d467d8ff051c81018054929095169190921617909255517f73661f06600408586227726a59a462d4c7b87e9a7813effa8f25d467d8ff051d90910155610276565b60006020828403121561025857600080fd5b81516001600160a01b038116811461026f57600080fd5b9392505050565b610402806102856000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c80632a16854c146100675780639d4a22551461009e578063c9543209146100be578063e4758202146100d3578063f851a440146100f3578063f91535141461011e575b600080fd5b61007a610075366004610339565b61014c565b604080516001600160a01b0390931683526020830191909152015b60405180910390f35b6100b16100ac36600461035b565b610192565b6040516100959190610374565b6100d16100cc366004610339565b61021a565b005b6100d16100e1366004610339565b60009182526002602052604090912055565b600054610106906001600160a01b031681565b6040516001600160a01b039091168152602001610095565b61013e61012c36600461035b565b60026020526000908152604090205481565b604051908152602001610095565b6001602052816000526040600020818154811061016857600080fd5b6000918252602090912060029091020180546001909101546001600160a01b039091169250905082565b606060016000838152602001908152602001600020805480602002602001604051908101604052809291908181526020016000905b8282101561020f576000848152602090819020604080518082019091526002850290910180546001600160a01b031682526001908101548284015290835290920191016101c7565b505050509050919050565b806001811015801561022d575060058111155b61027e5760405162461bcd60e51b815260206004820152601e60248201527f526174696e67206d757374206265206265747765656e203120616e642035000060448201526064015b60405180910390fd5b600083815260026020526040812054908190036102d65760405162461bcd60e51b8152602060048201526016602482015275149958d95a5c1d0818dbd919481b9bdd08199bdd5b9960521b6044820152606401610275565b6000908152600160208181526040808420815180830190925233825281830196875280548085018255908552919093209251600290910290920180546001600160a01b0319166001600160a01b0390931692909217825592519201919091555050565b6000806040838503121561034c57600080fd5b50508035926020909101359150565b60006020828403121561036d57600080fd5b5035919050565b602080825282518282018190526000919060409081850190868401855b828110156103bf57815180516001600160a01b03168552860151868501529284019290850190600101610391565b509197965050505050505056fea26469706673582212203a904842a81804d252dbd167727217091480550d176d30ad1fb11dc86bdb990e64736f6c63430008150033",
+    "sourceMap": "65:1559:18:-:0;;;572:468;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;610:5;:14;;-1:-1:-1;;;;;610:14:18;;;-1:-1:-1;;;;;;610:14:18;;;;;;;740:31;;;;;777:53;;;;;;;784:42;777:53;;;828:1;777:53;;;;;;740:31;:91;;;;;;;;;;;;693:1;740:91;;;;;;;;;;;;;;;;;;;;;;;;;;;;841:31;;;878:53;;;;;;;;;;929:1;878:53;;;;;;841:31;:91;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;942:31;;;979:53;;;;;;;;;;728:1;979:53;;;;;;942:31;:91;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;65:1559;;14:290:20;84:6;137:2;125:9;116:7;112:23;108:32;105:52;;;153:1;150;143:12;105:52;179:16;;-1:-1:-1;;;;;224:31:20;;214:42;;204:70;;270:1;267;260:12;204:70;293:5;14:290;-1:-1:-1;;;14:290:20:o;:::-;65:1559:18;;;;;;",
     "linkReferences": {}
   },
   "deployedBytecode": {
-    "object": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c80632a16854c1461005c578063c954320914610093578063e4758202146100a8578063f851a440146100bb578063f9153514146100e6575b600080fd5b61006f61006a36600461028c565b610114565b604080516001600160a01b0390931683526020830191909152015b60405180910390f35b6100a66100a136600461028c565b61015a565b005b6100a66100b636600461028c565b610216565b6000546100ce906001600160a01b031681565b6040516001600160a01b03909116815260200161008a565b6101066100f43660046102ae565b60026020526000908152604090205481565b60405190815260200161008a565b6001602052816000526040600020818154811061013057600080fd5b6000918252602090912060029091020180546001909101546001600160a01b039091169250905082565b600082815260026020526040812054908190036101b75760405162461bcd60e51b8152602060048201526016602482015275149958d95a5c1d0818dbd919481b9bdd08199bdd5b9960521b60448201526064015b60405180910390fd5b6000908152600160208181526040808420815180830190925233825281830195865280548085018255908552919093209251600290910290920180546001600160a01b0319166001600160a01b03909316929092178255915191015550565b6000546001600160a01b0316331461027a5760405162461bcd60e51b815260206004820152602160248201527f4f6e6c792061646d696e2063616e2063616c6c20746869732066756e6374696f6044820152603760f91b60648201526084016101ae565b60009182526002602052604090912055565b6000806040838503121561029f57600080fd5b50508035926020909101359150565b6000602082840312156102c057600080fd5b503591905056fea2646970667358221220228a2007878475de7e588127e7ded54f495c619c96a315d0e3f85d9e86a87f8f64736f6c63430008150033",
-    "sourceMap": "65:1491:20:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;119:52;;;;;;:::i;:::-;;:::i;:::-;;;;-1:-1:-1;;;;;459:32:22;;;441:51;;523:2;508:18;;501:34;;;;414:18;119:52:20;;;;;;;;1282:272;;;;;;:::i;:::-;;:::i;:::-;;1127:149;;;;;;:::i;:::-;;:::i;93:20::-;;;;;-1:-1:-1;;;;;93:20:20;;;;;;-1:-1:-1;;;;;963:32:22;;;945:51;;933:2;918:18;93:20:20;799:203:22;177:53:20;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;1338:25:22;;;1326:2;1311:18;177:53:20;1192:177:22;119:52:20;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;119:52:20;;;;-1:-1:-1;119:52:20;-1:-1:-1;119:52:20;:::o;1282:272::-;1358:20;1381:31;;;:18;:31;;;;;;;1430:17;;;1422:52;;;;-1:-1:-1;;;1422:52:20;;1576:2:22;1422:52:20;;;1558:21:22;1615:2;1595:18;;;1588:30;-1:-1:-1;;;1634:18:22;;;1627:52;1696:18;;1422:52:20;;;;;;;;;1484:30;;;;:16;:30;;;;;;;;1520:26;;;;;;;;1527:10;1520:26;;;;;;;;1484:63;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;1484:63:20;-1:-1:-1;;;;;1484:63:20;;;;;;;;;;;;;;-1:-1:-1;1282:272:20:o;1127:149::-;505:5;;-1:-1:-1;;;;;505:5:20;491:10;:19;483:65;;;;-1:-1:-1;;;483:65:20;;1927:2:22;483:65:20;;;1909:21:22;1966:2;1946:18;;;1939:30;2005:34;1985:18;;;1978:62;-1:-1:-1;;;2056:18:22;;;2049:31;2097:19;;483:65:20;1725:397:22;483:65:20;1223:31:::1;::::0;;;:18:::1;:31;::::0;;;;;:46;1127:149::o;14:248:22:-;82:6;90;143:2;131:9;122:7;118:23;114:32;111:52;;;159:1;156;149:12;111:52;-1:-1:-1;;182:23:22;;;252:2;237:18;;;224:32;;-1:-1:-1;14:248:22:o;1007:180::-;1066:6;1119:2;1107:9;1098:7;1094:23;1090:32;1087:52;;;1135:1;1132;1125:12;1087:52;-1:-1:-1;1158:23:22;;1007:180;-1:-1:-1;1007:180:22:o",
+    "object": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c80632a16854c146100675780639d4a22551461009e578063c9543209146100be578063e4758202146100d3578063f851a440146100f3578063f91535141461011e575b600080fd5b61007a610075366004610339565b61014c565b604080516001600160a01b0390931683526020830191909152015b60405180910390f35b6100b16100ac36600461035b565b610192565b6040516100959190610374565b6100d16100cc366004610339565b61021a565b005b6100d16100e1366004610339565b60009182526002602052604090912055565b600054610106906001600160a01b031681565b6040516001600160a01b039091168152602001610095565b61013e61012c36600461035b565b60026020526000908152604090205481565b604051908152602001610095565b6001602052816000526040600020818154811061016857600080fd5b6000918252602090912060029091020180546001909101546001600160a01b039091169250905082565b606060016000838152602001908152602001600020805480602002602001604051908101604052809291908181526020016000905b8282101561020f576000848152602090819020604080518082019091526002850290910180546001600160a01b031682526001908101548284015290835290920191016101c7565b505050509050919050565b806001811015801561022d575060058111155b61027e5760405162461bcd60e51b815260206004820152601e60248201527f526174696e67206d757374206265206265747765656e203120616e642035000060448201526064015b60405180910390fd5b600083815260026020526040812054908190036102d65760405162461bcd60e51b8152602060048201526016602482015275149958d95a5c1d0818dbd919481b9bdd08199bdd5b9960521b6044820152606401610275565b6000908152600160208181526040808420815180830190925233825281830196875280548085018255908552919093209251600290910290920180546001600160a01b0319166001600160a01b0390931692909217825592519201919091555050565b6000806040838503121561034c57600080fd5b50508035926020909101359150565b60006020828403121561036d57600080fd5b5035919050565b602080825282518282018190526000919060409081850190868401855b828110156103bf57815180516001600160a01b03168552860151868501529284019290850190600101610391565b509197965050505050505056fea26469706673582212203a904842a81804d252dbd167727217091480550d176d30ad1fb11dc86bdb990e64736f6c63430008150033",
+    "sourceMap": "65:1559:18:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;119:52;;;;;;:::i;:::-;;:::i;:::-;;;;-1:-1:-1;;;;;459:32:20;;;441:51;;523:2;508:18;;501:34;;;;414:18;119:52:18;;;;;;;;1046:134;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;1329:292::-;;;;;;:::i;:::-;;:::i;:::-;;1186:137;;;;;;:::i;:::-;1270:31;;;;:18;:31;;;;;;:46;1186:137;93:20;;;;;-1:-1:-1;;;;;93:20:18;;;;;;-1:-1:-1;;;;;1967:32:20;;;1949:51;;1937:2;1922:18;93:20:18;1803:203:20;177:53:18;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;2342:25:20;;;2330:2;2315:18;177:53:18;2196:177:20;119:52:18;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;119:52:18;;;;-1:-1:-1;119:52:18;-1:-1:-1;119:52:18;:::o;1046:134::-;1109:15;1143:16;:30;1160:12;1143:30;;;;;;;;;;;1136:37;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;1136:37:18;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1046:134;;;:::o;1329:292::-;1407:6;377:1;367:6;:11;;:26;;;;;392:1;382:6;:11;;367:26;359:69;;;;-1:-1:-1;;;359:69:18;;2580:2:20;359:69:18;;;2562:21:20;2619:2;2599:18;;;2592:30;2658:32;2638:18;;;2631:60;2708:18;;359:69:18;;;;;;;;;1425:20:::1;1448:31:::0;;;:18:::1;:31;::::0;;;;;;1497:17;;;1489:52:::1;;;::::0;-1:-1:-1;;;1489:52:18;;2939:2:20;1489:52:18::1;::::0;::::1;2921:21:20::0;2978:2;2958:18;;;2951:30;-1:-1:-1;;;2997:18:20;;;2990:52;3059:18;;1489:52:18::1;2737:346:20::0;1489:52:18::1;1551:30;::::0;;;:16:::1;:30;::::0;;;;;;;1587:26;;;;::::1;::::0;;;1594:10:::1;1587:26:::0;;;;::::1;::::0;;;1551:63;;;;::::1;::::0;;;;;;;;;;;::::1;::::0;;::::1;::::0;;::::1;::::0;;-1:-1:-1;;;;;;1551:63:18::1;-1:-1:-1::0;;;;;1551:63:18;;::::1;::::0;;;::::1;::::0;;;;;::::1;::::0;;;;-1:-1:-1;;1329:292:18:o;14:248:20:-;82:6;90;143:2;131:9;122:7;118:23;114:32;111:52;;;159:1;156;149:12;111:52;-1:-1:-1;;182:23:20;;;252:2;237:18;;;224:32;;-1:-1:-1;14:248:20:o;546:180::-;605:6;658:2;646:9;637:7;633:23;629:32;626:52;;;674:1;671;664:12;626:52;-1:-1:-1;697:23:20;;546:180;-1:-1:-1;546:180:20:o;731:814::-;952:2;1004:21;;;1074:13;;977:18;;;1096:22;;;923:4;;952:2;1137;;1155:18;;;;1196:15;;;923:4;1239:280;1253:6;1250:1;1247:13;1239:280;;;1312:13;;1354:9;;-1:-1:-1;;;;;1350:35:20;1338:48;;1426:11;;1420:18;1406:12;;;1399:40;1459:12;;;;1494:15;;;;1382:1;1268:9;1239:280;;;-1:-1:-1;1536:3:20;;731:814;-1:-1:-1;;;;;;;731:814:20:o",
     "linkReferences": {}
   },
   "methodIdentifiers": {
     "addReceiptCode(bytes32,uint256)": "e4758202",
     "admin()": "f851a440",
+    "getReviews(uint256)": "9d4a2255",
     "submitReview(bytes32,uint256)": "c9543209",
     "submittedReviews(uint256,uint256)": "2a16854c",
     "unusedReceiptCodes(bytes32)": "f9153514"
   },
-  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptCode\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"restaurantId\",\"type\":\"uint256\"}],\"name\":\"addReceiptCode\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptCode\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"rating\",\"type\":\"uint256\"}],\"name\":\"submitReview\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"submittedReviews\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"userId\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"rating\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"unusedReceiptCodes\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/VerifiedBite.sol\":\"VerifiedBite\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/VerifiedBite.sol\":{\"keccak256\":\"0xcdab0de7e93d8da5268f9d61b8bffb9e27a0a97c3f6f50b4e081f4588e00358c\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://2c5f2f4be398f779ca5360e2e51924a8b60ddc500d84943a624d44fe4720b848\",\"dweb:/ipfs/QmfEe9ZymZGRKnczoCN1QxDRp993LbAWLYgs3ocDHjN6QR\"]}},\"version\":1}",
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptCode\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"restaurantId\",\"type\":\"uint256\"}],\"name\":\"addReceiptCode\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"restaurantId\",\"type\":\"uint256\"}],\"name\":\"getReviews\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"userId\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"rating\",\"type\":\"uint256\"}],\"internalType\":\"struct VerifiedBite.Review[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"receiptCode\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"rating\",\"type\":\"uint256\"}],\"name\":\"submitReview\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"submittedReviews\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"userId\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"rating\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"unusedReceiptCodes\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/VerifiedBite.sol\":\"VerifiedBite\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/VerifiedBite.sol\":{\"keccak256\":\"0xa3d1d4834b51038a221ef1945a089a411c2487a3a106bf0c3c0b08567b6d1d47\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://fd69375a8bbdacc99282b3cf2bc5d526b7263ef03745087fe960e2cf3f323f3b\",\"dweb:/ipfs/QmWm9oQh4Rfaw4UnrgvLDeKkDn5u2uhBA3eNjDhAPn9Qpg\"]}},\"version\":1}",
   "metadata": {
     "compiler": {
       "version": "0.8.21+commit.d9974bed"
@@ -172,6 +204,37 @@
               "internalType": "address",
               "name": "",
               "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "restaurantId",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getReviews",
+          "outputs": [
+            {
+              "internalType": "struct VerifiedBite.Review[]",
+              "name": "",
+              "type": "tuple[]",
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "userId",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "rating",
+                  "type": "uint256"
+                }
+              ]
             }
           ]
         },
@@ -271,10 +334,10 @@
     },
     "sources": {
       "src/VerifiedBite.sol": {
-        "keccak256": "0xcdab0de7e93d8da5268f9d61b8bffb9e27a0a97c3f6f50b4e081f4588e00358c",
+        "keccak256": "0xa3d1d4834b51038a221ef1945a089a411c2487a3a106bf0c3c0b08567b6d1d47",
         "urls": [
-          "bzz-raw://2c5f2f4be398f779ca5360e2e51924a8b60ddc500d84943a624d44fe4720b848",
-          "dweb:/ipfs/QmfEe9ZymZGRKnczoCN1QxDRp993LbAWLYgs3ocDHjN6QR"
+          "bzz-raw://fd69375a8bbdacc99282b3cf2bc5d526b7263ef03745087fe960e2cf3f323f3b",
+          "dweb:/ipfs/QmWm9oQh4Rfaw4UnrgvLDeKkDn5u2uhBA3eNjDhAPn9Qpg"
         ],
         "license": "UNLICENSED"
       }
@@ -283,19 +346,19 @@
   },
   "ast": {
     "absolutePath": "src/VerifiedBite.sol",
-    "id": 43062,
+    "id": 43017,
     "exportedSymbols": {
       "VerifiedBite": [
-        43061
+        43016
       ]
     },
     "nodeType": "SourceUnit",
-    "src": "39:1518:20",
+    "src": "39:1586:18",
     "nodes": [
       {
-        "id": 42914,
+        "id": 42854,
         "nodeType": "PragmaDirective",
-        "src": "39:24:20",
+        "src": "39:24:18",
         "nodes": [],
         "literals": [
           "solidity",
@@ -305,21 +368,21 @@
         ]
       },
       {
-        "id": 43061,
+        "id": 43016,
         "nodeType": "ContractDefinition",
-        "src": "65:1491:20",
+        "src": "65:1559:18",
         "nodes": [
           {
-            "id": 42916,
+            "id": 42856,
             "nodeType": "VariableDeclaration",
-            "src": "93:20:20",
+            "src": "93:20:18",
             "nodes": [],
             "constant": false,
             "functionSelector": "f851a440",
             "mutability": "mutable",
             "name": "admin",
-            "nameLocation": "108:5:20",
-            "scope": 43061,
+            "nameLocation": "108:5:18",
+            "scope": 43016,
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -327,10 +390,10 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 42915,
+              "id": 42855,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "93:7:20",
+              "src": "93:7:18",
               "stateMutability": "nonpayable",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
@@ -340,70 +403,70 @@
             "visibility": "public"
           },
           {
-            "id": 42922,
+            "id": 42862,
             "nodeType": "VariableDeclaration",
-            "src": "119:52:20",
+            "src": "119:52:18",
             "nodes": [],
             "constant": false,
             "functionSelector": "2a16854c",
             "mutability": "mutable",
             "name": "submittedReviews",
-            "nameLocation": "155:16:20",
-            "scope": 43061,
+            "nameLocation": "155:16:18",
+            "scope": 43016,
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_$",
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_$",
               "typeString": "mapping(uint256 => struct VerifiedBite.Review[])"
             },
             "typeName": {
-              "id": 42921,
+              "id": 42861,
               "keyName": "",
               "keyNameLocation": "-1:-1:-1",
               "keyType": {
-                "id": 42917,
+                "id": 42857,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
-                "src": "127:7:20",
+                "src": "127:7:18",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "119:28:20",
+              "src": "119:28:18",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_$",
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_$",
                 "typeString": "mapping(uint256 => struct VerifiedBite.Review[])"
               },
               "valueName": "",
               "valueNameLocation": "-1:-1:-1",
               "valueType": {
                 "baseType": {
-                  "id": 42919,
+                  "id": 42859,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 42918,
+                    "id": 42858,
                     "name": "Review",
                     "nameLocations": [
-                      "138:6:20"
+                      "138:6:18"
                     ],
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 42931,
-                    "src": "138:6:20"
+                    "referencedDeclaration": 42871,
+                    "src": "138:6:18"
                   },
-                  "referencedDeclaration": 42931,
-                  "src": "138:6:20",
+                  "referencedDeclaration": 42871,
+                  "src": "138:6:18",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Review_$42931_storage_ptr",
+                    "typeIdentifier": "t_struct$_Review_$42871_storage_ptr",
                     "typeString": "struct VerifiedBite.Review"
                   }
                 },
-                "id": 42920,
+                "id": 42860,
                 "nodeType": "ArrayTypeName",
-                "src": "138:8:20",
+                "src": "138:8:18",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_Review_$42931_storage_$dyn_storage_ptr",
+                  "typeIdentifier": "t_array$_t_struct$_Review_$42871_storage_$dyn_storage_ptr",
                   "typeString": "struct VerifiedBite.Review[]"
                 }
               }
@@ -411,16 +474,16 @@
             "visibility": "public"
           },
           {
-            "id": 42926,
+            "id": 42866,
             "nodeType": "VariableDeclaration",
-            "src": "177:53:20",
+            "src": "177:53:18",
             "nodes": [],
             "constant": false,
             "functionSelector": "f9153514",
             "mutability": "mutable",
             "name": "unusedReceiptCodes",
-            "nameLocation": "212:18:20",
-            "scope": 43061,
+            "nameLocation": "212:18:18",
+            "scope": 43016,
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -428,21 +491,21 @@
               "typeString": "mapping(bytes32 => uint256)"
             },
             "typeName": {
-              "id": 42925,
+              "id": 42865,
               "keyName": "",
               "keyNameLocation": "-1:-1:-1",
               "keyType": {
-                "id": 42923,
+                "id": 42863,
                 "name": "bytes32",
                 "nodeType": "ElementaryTypeName",
-                "src": "185:7:20",
+                "src": "185:7:18",
                 "typeDescriptions": {
                   "typeIdentifier": "t_bytes32",
                   "typeString": "bytes32"
                 }
               },
               "nodeType": "Mapping",
-              "src": "177:27:20",
+              "src": "177:27:18",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_bytes32_$_t_uint256_$",
                 "typeString": "mapping(bytes32 => uint256)"
@@ -450,10 +513,10 @@
               "valueName": "",
               "valueNameLocation": "-1:-1:-1",
               "valueType": {
-                "id": 42924,
+                "id": 42864,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
-                "src": "196:7:20",
+                "src": "196:7:18",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -463,21 +526,21 @@
             "visibility": "public"
           },
           {
-            "id": 42931,
+            "id": 42871,
             "nodeType": "StructDefinition",
-            "src": "237:69:20",
+            "src": "237:69:18",
             "nodes": [],
             "canonicalName": "VerifiedBite.Review",
             "members": [
               {
                 "constant": false,
-                "id": 42928,
+                "id": 42868,
                 "mutability": "mutable",
                 "name": "userId",
-                "nameLocation": "269:6:20",
+                "nameLocation": "269:6:18",
                 "nodeType": "VariableDeclaration",
-                "scope": 42931,
-                "src": "261:14:20",
+                "scope": 42871,
+                "src": "261:14:18",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -485,10 +548,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 42927,
+                  "id": 42867,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "261:7:20",
+                  "src": "261:7:18",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -499,13 +562,13 @@
               },
               {
                 "constant": false,
-                "id": 42930,
+                "id": 42870,
                 "mutability": "mutable",
                 "name": "rating",
-                "nameLocation": "293:6:20",
+                "nameLocation": "293:6:18",
                 "nodeType": "VariableDeclaration",
-                "scope": 42931,
-                "src": "285:14:20",
+                "scope": 42871,
+                "src": "285:14:18",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -513,10 +576,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 42929,
+                  "id": 42869,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "285:7:20",
+                  "src": "285:7:18",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -526,19 +589,19 @@
               }
             ],
             "name": "Review",
-            "nameLocation": "244:6:20",
-            "scope": 43061,
+            "nameLocation": "244:6:18",
+            "scope": 43016,
             "visibility": "public"
           },
           {
-            "id": 42948,
+            "id": 42888,
             "nodeType": "ModifierDefinition",
-            "src": "312:134:20",
+            "src": "312:134:18",
             "nodes": [],
             "body": {
-              "id": 42947,
+              "id": 42887,
               "nodeType": "Block",
-              "src": "349:97:20",
+              "src": "349:97:18",
               "nodes": [],
               "statements": [
                 {
@@ -549,7 +612,7 @@
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
                         },
-                        "id": 42942,
+                        "id": 42882,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -559,18 +622,18 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 42938,
+                          "id": 42878,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
-                            "id": 42936,
+                            "id": 42876,
                             "name": "rating",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 42933,
-                            "src": "367:6:20",
+                            "referencedDeclaration": 42873,
+                            "src": "367:6:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -580,21 +643,21 @@
                           "operator": ">=",
                           "rightExpression": {
                             "hexValue": "31",
-                            "id": 42937,
+                            "id": 42877,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "377:1:20",
+                            "src": "377:1:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_rational_1_by_1",
                               "typeString": "int_const 1"
                             },
                             "value": "1"
                           },
-                          "src": "367:11:20",
+                          "src": "367:11:18",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -607,18 +670,18 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 42941,
+                          "id": 42881,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
-                            "id": 42939,
+                            "id": 42879,
                             "name": "rating",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 42933,
-                            "src": "382:6:20",
+                            "referencedDeclaration": 42873,
+                            "src": "382:6:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -628,27 +691,27 @@
                           "operator": "<=",
                           "rightExpression": {
                             "hexValue": "35",
-                            "id": 42940,
+                            "id": 42880,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "392:1:20",
+                            "src": "392:1:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_rational_5_by_1",
                               "typeString": "int_const 5"
                             },
                             "value": "5"
                           },
-                          "src": "382:11:20",
+                          "src": "382:11:18",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
                           }
                         },
-                        "src": "367:26:20",
+                        "src": "367:26:18",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -656,14 +719,14 @@
                       },
                       {
                         "hexValue": "526174696e67206d757374206265206265747765656e203120616e642035",
-                        "id": 42943,
+                        "id": 42883,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "395:32:20",
+                        "src": "395:32:18",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_99d740c8f9e7826577402cec55b5ca767dd6a951e8818a6be45b794e231a2701",
                           "typeString": "literal_string \"Rating must be between 1 and 5\""
@@ -682,7 +745,7 @@
                           "typeString": "literal_string \"Rating must be between 1 and 5\""
                         }
                       ],
-                      "id": 42935,
+                      "id": 42875,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -690,13 +753,13 @@
                         -18
                       ],
                       "referencedDeclaration": -18,
-                      "src": "359:7:20",
+                      "src": "359:7:18",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 42944,
+                    "id": 42884,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -705,39 +768,39 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "359:69:20",
+                    "src": "359:69:18",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 42945,
+                  "id": 42885,
                   "nodeType": "ExpressionStatement",
-                  "src": "359:69:20"
+                  "src": "359:69:18"
                 },
                 {
-                  "id": 42946,
+                  "id": 42886,
                   "nodeType": "PlaceholderStatement",
-                  "src": "438:1:20"
+                  "src": "438:1:18"
                 }
               ]
             },
             "name": "validRating",
-            "nameLocation": "321:11:20",
+            "nameLocation": "321:11:18",
             "parameters": {
-              "id": 42934,
+              "id": 42874,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 42933,
+                  "id": 42873,
                   "mutability": "mutable",
                   "name": "rating",
-                  "nameLocation": "341:6:20",
+                  "nameLocation": "341:6:18",
                   "nodeType": "VariableDeclaration",
-                  "scope": 42948,
-                  "src": "333:14:20",
+                  "scope": 42888,
+                  "src": "333:14:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -745,10 +808,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 42932,
+                    "id": 42872,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "333:7:20",
+                    "src": "333:7:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -757,20 +820,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "332:16:20"
+              "src": "332:16:18"
             },
             "virtual": false,
             "visibility": "internal"
           },
           {
-            "id": 42960,
+            "id": 42900,
             "nodeType": "ModifierDefinition",
-            "src": "452:114:20",
+            "src": "452:114:18",
             "nodes": [],
             "body": {
-              "id": 42959,
+              "id": 42899,
               "nodeType": "Block",
-              "src": "473:93:20",
+              "src": "473:93:18",
               "nodes": [],
               "statements": [
                 {
@@ -781,33 +844,33 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 42954,
+                        "id": 42894,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 42951,
+                            "id": 42891,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": -15,
-                            "src": "491:3:20",
+                            "src": "491:3:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 42952,
+                          "id": 42892,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
-                          "memberLocation": "495:6:20",
+                          "memberLocation": "495:6:18",
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
-                          "src": "491:10:20",
+                          "src": "491:10:18",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -816,18 +879,18 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-                          "id": 42953,
+                          "id": 42893,
                           "name": "admin",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 42916,
-                          "src": "505:5:20",
+                          "referencedDeclaration": 42856,
+                          "src": "505:5:18",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "491:19:20",
+                        "src": "491:19:18",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -835,14 +898,14 @@
                       },
                       {
                         "hexValue": "4f6e6c792061646d696e2063616e2063616c6c20746869732066756e6374696f6e",
-                        "id": 42955,
+                        "id": 42895,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "512:35:20",
+                        "src": "512:35:18",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_e0ef19aa67a8b89b19419c8977a6a75d04286a47014bf7a3d2ea537634352c8b",
                           "typeString": "literal_string \"Only admin can call this function\""
@@ -861,7 +924,7 @@
                           "typeString": "literal_string \"Only admin can call this function\""
                         }
                       ],
-                      "id": 42950,
+                      "id": 42890,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -869,13 +932,13 @@
                         -18
                       ],
                       "referencedDeclaration": -18,
-                      "src": "483:7:20",
+                      "src": "483:7:18",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 42956,
+                    "id": 42896,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -884,60 +947,60 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "483:65:20",
+                    "src": "483:65:18",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 42957,
+                  "id": 42897,
                   "nodeType": "ExpressionStatement",
-                  "src": "483:65:20"
+                  "src": "483:65:18"
                 },
                 {
-                  "id": 42958,
+                  "id": 42898,
                   "nodeType": "PlaceholderStatement",
-                  "src": "558:1:20"
+                  "src": "558:1:18"
                 }
               ]
             },
             "name": "onlyAdmin",
-            "nameLocation": "461:9:20",
+            "nameLocation": "461:9:18",
             "parameters": {
-              "id": 42949,
+              "id": 42889,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "470:2:20"
+              "src": "470:2:18"
             },
             "virtual": false,
             "visibility": "internal"
           },
           {
-            "id": 43012,
+            "id": 42952,
             "nodeType": "FunctionDefinition",
-            "src": "572:549:20",
+            "src": "572:468:18",
             "nodes": [],
             "body": {
-              "id": 43011,
+              "id": 42951,
               "nodeType": "Block",
-              "src": "600:521:20",
+              "src": "600:440:18",
               "nodes": [],
               "statements": [
                 {
                   "expression": {
-                    "id": 42967,
+                    "id": 42907,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 42965,
+                      "id": 42905,
                       "name": "admin",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 42916,
-                      "src": "610:5:20",
+                      "referencedDeclaration": 42856,
+                      "src": "610:5:18",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -946,41 +1009,41 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 42966,
+                      "id": 42906,
                       "name": "_admin",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 42962,
-                      "src": "618:6:20",
+                      "referencedDeclaration": 42902,
+                      "src": "618:6:18",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "610:14:20",
+                    "src": "610:14:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 42968,
+                  "id": 42908,
                   "nodeType": "ExpressionStatement",
-                  "src": "610:14:20"
+                  "src": "610:14:18"
                 },
                 {
                   "assignments": [
-                    42970
+                    42910
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 42970,
+                      "id": 42910,
                       "mutability": "mutable",
-                      "name": "userId1",
-                      "nameLocation": "642:7:20",
+                      "name": "restaurantId1",
+                      "nameLocation": "642:13:18",
                       "nodeType": "VariableDeclaration",
-                      "scope": 43011,
-                      "src": "634:15:20",
+                      "scope": 42951,
+                      "src": "634:21:18",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -988,10 +1051,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 42969,
+                        "id": 42909,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
-                        "src": "634:7:20",
+                        "src": "634:7:18",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1000,40 +1063,40 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 42972,
+                  "id": 42912,
                   "initialValue": {
-                    "hexValue": "31323334353637383930313233343536373839303132333435363738393031323334353637383930",
-                    "id": 42971,
+                    "hexValue": "31",
+                    "id": 42911,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "652:40:20",
+                    "src": "658:1:18",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_rational_1234567890123456789012345678901234567890_by_1",
-                      "typeString": "int_const 1234...(32 digits omitted)...7890"
+                      "typeIdentifier": "t_rational_1_by_1",
+                      "typeString": "int_const 1"
                     },
-                    "value": "1234567890123456789012345678901234567890"
+                    "value": "1"
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "634:58:20"
+                  "src": "634:25:18"
                 },
                 {
                   "assignments": [
-                    42974
+                    42914
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 42974,
+                      "id": 42914,
                       "mutability": "mutable",
-                      "name": "userId2",
-                      "nameLocation": "710:7:20",
+                      "name": "restaurantId2",
+                      "nameLocation": "677:13:18",
                       "nodeType": "VariableDeclaration",
-                      "scope": 43011,
-                      "src": "702:15:20",
+                      "scope": 42951,
+                      "src": "669:21:18",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1041,10 +1104,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 42973,
+                        "id": 42913,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
-                        "src": "702:7:20",
+                        "src": "669:7:18",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1053,40 +1116,40 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 42976,
+                  "id": 42916,
                   "initialValue": {
-                    "hexValue": "32333435363738393031323334353637383930313233343536373839303132333435363738393031",
-                    "id": 42975,
+                    "hexValue": "32",
+                    "id": 42915,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "720:40:20",
+                    "src": "693:1:18",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_rational_2345678901234567890123456789012345678901_by_1",
-                      "typeString": "int_const 2345...(32 digits omitted)...8901"
+                      "typeIdentifier": "t_rational_2_by_1",
+                      "typeString": "int_const 2"
                     },
-                    "value": "2345678901234567890123456789012345678901"
+                    "value": "2"
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "702:58:20"
+                  "src": "669:25:18"
                 },
                 {
                   "assignments": [
-                    42978
+                    42918
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 42978,
+                      "id": 42918,
                       "mutability": "mutable",
-                      "name": "userId3",
-                      "nameLocation": "778:7:20",
+                      "name": "restaurantId3",
+                      "nameLocation": "712:13:18",
                       "nodeType": "VariableDeclaration",
-                      "scope": 43011,
-                      "src": "770:15:20",
+                      "scope": 42951,
+                      "src": "704:21:18",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1094,10 +1157,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 42977,
+                        "id": 42917,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
-                        "src": "770:7:20",
+                        "src": "704:7:18",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1106,25 +1169,25 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 42980,
+                  "id": 42920,
                   "initialValue": {
-                    "hexValue": "33343536373839303132333435363738393031323334353637383930313233343536373839303132",
-                    "id": 42979,
+                    "hexValue": "33",
+                    "id": 42919,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "788:40:20",
+                    "src": "728:1:18",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_rational_3456789012345678901234567890123456789012_by_1",
-                      "typeString": "int_const 3456...(32 digits omitted)...9012"
+                      "typeIdentifier": "t_rational_3_by_1",
+                      "typeString": "int_const 3"
                     },
-                    "value": "3456789012345678901234567890123456789012"
+                    "value": "3"
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "770:58:20"
+                  "src": "704:25:18"
                 },
                 {
                   "expression": {
@@ -1133,14 +1196,14 @@
                         "arguments": [
                           {
                             "hexValue": "307836436241613734364531463137383034453962326238313232324339663461304135306136344139",
-                            "id": 42986,
+                            "id": 42926,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "877:42:20",
+                            "src": "784:42:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -1149,14 +1212,14 @@
                           },
                           {
                             "hexValue": "35",
-                            "id": 42987,
+                            "id": 42927,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "921:1:20",
+                            "src": "828:1:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_rational_5_by_1",
                               "typeString": "int_const 5"
@@ -1175,18 +1238,18 @@
                               "typeString": "int_const 5"
                             }
                           ],
-                          "id": 42985,
+                          "id": 42925,
                           "name": "Review",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 42931,
-                          "src": "870:6:20",
+                          "referencedDeclaration": 42871,
+                          "src": "777:6:18",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_struct$_Review_$42931_storage_ptr_$",
+                            "typeIdentifier": "t_type$_t_struct$_Review_$42871_storage_ptr_$",
                             "typeString": "type(struct VerifiedBite.Review storage pointer)"
                           }
                         },
-                        "id": 42988,
+                        "id": 42928,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1195,10 +1258,10 @@
                         "nameLocations": [],
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "870:53:20",
+                        "src": "777:53:18",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Review_$42931_memory_ptr",
+                          "typeIdentifier": "t_struct$_Review_$42871_memory_ptr",
                           "typeString": "struct VerifiedBite.Review memory"
                         }
                       }
@@ -1206,31 +1269,31 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_struct$_Review_$42931_memory_ptr",
+                          "typeIdentifier": "t_struct$_Review_$42871_memory_ptr",
                           "typeString": "struct VerifiedBite.Review memory"
                         }
                       ],
                       "expression": {
                         "baseExpression": {
-                          "id": 42981,
+                          "id": 42921,
                           "name": "submittedReviews",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 42922,
-                          "src": "839:16:20",
+                          "referencedDeclaration": 42862,
+                          "src": "740:16:18",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_$",
                             "typeString": "mapping(uint256 => struct VerifiedBite.Review storage ref[] storage ref)"
                           }
                         },
-                        "id": 42983,
+                        "id": 42923,
                         "indexExpression": {
-                          "id": 42982,
-                          "name": "userId1",
+                          "id": 42922,
+                          "name": "restaurantId1",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 42970,
-                          "src": "856:7:20",
+                          "referencedDeclaration": 42910,
+                          "src": "757:13:18",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -1241,27 +1304,27 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "839:25:20",
+                        "src": "740:31:18",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_struct$_Review_$42931_storage_$dyn_storage",
+                          "typeIdentifier": "t_array$_t_struct$_Review_$42871_storage_$dyn_storage",
                           "typeString": "struct VerifiedBite.Review storage ref[] storage ref"
                         }
                       },
-                      "id": 42984,
+                      "id": 42924,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "memberLocation": "865:4:20",
+                      "memberLocation": "772:4:18",
                       "memberName": "push",
                       "nodeType": "MemberAccess",
-                      "src": "839:30:20",
+                      "src": "740:36:18",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_ptr_$_t_struct$_Review_$42931_storage_$returns$__$attached_to$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_ptr_$",
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_ptr_$_t_struct$_Review_$42871_storage_$returns$__$attached_to$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_ptr_$",
                         "typeString": "function (struct VerifiedBite.Review storage ref[] storage pointer,struct VerifiedBite.Review storage ref)"
                       }
                     },
-                    "id": 42989,
+                    "id": 42929,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1270,16 +1333,16 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "839:85:20",
+                    "src": "740:91:18",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 42990,
+                  "id": 42930,
                   "nodeType": "ExpressionStatement",
-                  "src": "839:85:20"
+                  "src": "740:91:18"
                 },
                 {
                   "expression": {
@@ -1288,14 +1351,14 @@
                         "arguments": [
                           {
                             "hexValue": "307836436241613734364531463137383034453962326238313232324339663461304135306136344139",
-                            "id": 42996,
+                            "id": 42936,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "972:42:20",
+                            "src": "885:42:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -1304,14 +1367,14 @@
                           },
                           {
                             "hexValue": "34",
-                            "id": 42997,
+                            "id": 42937,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "1016:1:20",
+                            "src": "929:1:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_rational_4_by_1",
                               "typeString": "int_const 4"
@@ -1330,18 +1393,18 @@
                               "typeString": "int_const 4"
                             }
                           ],
-                          "id": 42995,
+                          "id": 42935,
                           "name": "Review",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 42931,
-                          "src": "965:6:20",
+                          "referencedDeclaration": 42871,
+                          "src": "878:6:18",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_struct$_Review_$42931_storage_ptr_$",
+                            "typeIdentifier": "t_type$_t_struct$_Review_$42871_storage_ptr_$",
                             "typeString": "type(struct VerifiedBite.Review storage pointer)"
                           }
                         },
-                        "id": 42998,
+                        "id": 42938,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1350,10 +1413,10 @@
                         "nameLocations": [],
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "965:53:20",
+                        "src": "878:53:18",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Review_$42931_memory_ptr",
+                          "typeIdentifier": "t_struct$_Review_$42871_memory_ptr",
                           "typeString": "struct VerifiedBite.Review memory"
                         }
                       }
@@ -1361,31 +1424,31 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_struct$_Review_$42931_memory_ptr",
+                          "typeIdentifier": "t_struct$_Review_$42871_memory_ptr",
                           "typeString": "struct VerifiedBite.Review memory"
                         }
                       ],
                       "expression": {
                         "baseExpression": {
-                          "id": 42991,
+                          "id": 42931,
                           "name": "submittedReviews",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 42922,
-                          "src": "934:16:20",
+                          "referencedDeclaration": 42862,
+                          "src": "841:16:18",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_$",
                             "typeString": "mapping(uint256 => struct VerifiedBite.Review storage ref[] storage ref)"
                           }
                         },
-                        "id": 42993,
+                        "id": 42933,
                         "indexExpression": {
-                          "id": 42992,
-                          "name": "userId2",
+                          "id": 42932,
+                          "name": "restaurantId2",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 42974,
-                          "src": "951:7:20",
+                          "referencedDeclaration": 42914,
+                          "src": "858:13:18",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -1396,27 +1459,27 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "934:25:20",
+                        "src": "841:31:18",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_struct$_Review_$42931_storage_$dyn_storage",
+                          "typeIdentifier": "t_array$_t_struct$_Review_$42871_storage_$dyn_storage",
                           "typeString": "struct VerifiedBite.Review storage ref[] storage ref"
                         }
                       },
-                      "id": 42994,
+                      "id": 42934,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "memberLocation": "960:4:20",
+                      "memberLocation": "873:4:18",
                       "memberName": "push",
                       "nodeType": "MemberAccess",
-                      "src": "934:30:20",
+                      "src": "841:36:18",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_ptr_$_t_struct$_Review_$42931_storage_$returns$__$attached_to$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_ptr_$",
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_ptr_$_t_struct$_Review_$42871_storage_$returns$__$attached_to$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_ptr_$",
                         "typeString": "function (struct VerifiedBite.Review storage ref[] storage pointer,struct VerifiedBite.Review storage ref)"
                       }
                     },
-                    "id": 42999,
+                    "id": 42939,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1425,16 +1488,16 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "934:85:20",
+                    "src": "841:91:18",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 43000,
+                  "id": 42940,
                   "nodeType": "ExpressionStatement",
-                  "src": "934:85:20"
+                  "src": "841:91:18"
                 },
                 {
                   "expression": {
@@ -1443,14 +1506,14 @@
                         "arguments": [
                           {
                             "hexValue": "307836436241613734364531463137383034453962326238313232324339663461304135306136344139",
-                            "id": 43006,
+                            "id": 42946,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "1067:42:20",
+                            "src": "986:42:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -1459,14 +1522,14 @@
                           },
                           {
                             "hexValue": "33",
-                            "id": 43007,
+                            "id": 42947,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "1111:1:20",
+                            "src": "1030:1:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_rational_3_by_1",
                               "typeString": "int_const 3"
@@ -1485,18 +1548,18 @@
                               "typeString": "int_const 3"
                             }
                           ],
-                          "id": 43005,
+                          "id": 42945,
                           "name": "Review",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 42931,
-                          "src": "1060:6:20",
+                          "referencedDeclaration": 42871,
+                          "src": "979:6:18",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_struct$_Review_$42931_storage_ptr_$",
+                            "typeIdentifier": "t_type$_t_struct$_Review_$42871_storage_ptr_$",
                             "typeString": "type(struct VerifiedBite.Review storage pointer)"
                           }
                         },
-                        "id": 43008,
+                        "id": 42948,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1505,10 +1568,10 @@
                         "nameLocations": [],
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "1060:53:20",
+                        "src": "979:53:18",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Review_$42931_memory_ptr",
+                          "typeIdentifier": "t_struct$_Review_$42871_memory_ptr",
                           "typeString": "struct VerifiedBite.Review memory"
                         }
                       }
@@ -1516,31 +1579,31 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_struct$_Review_$42931_memory_ptr",
+                          "typeIdentifier": "t_struct$_Review_$42871_memory_ptr",
                           "typeString": "struct VerifiedBite.Review memory"
                         }
                       ],
                       "expression": {
                         "baseExpression": {
-                          "id": 43001,
+                          "id": 42941,
                           "name": "submittedReviews",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 42922,
-                          "src": "1029:16:20",
+                          "referencedDeclaration": 42862,
+                          "src": "942:16:18",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_$",
                             "typeString": "mapping(uint256 => struct VerifiedBite.Review storage ref[] storage ref)"
                           }
                         },
-                        "id": 43003,
+                        "id": 42943,
                         "indexExpression": {
-                          "id": 43002,
-                          "name": "userId3",
+                          "id": 42942,
+                          "name": "restaurantId3",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 42978,
-                          "src": "1046:7:20",
+                          "referencedDeclaration": 42918,
+                          "src": "959:13:18",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -1551,27 +1614,27 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "1029:25:20",
+                        "src": "942:31:18",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_struct$_Review_$42931_storage_$dyn_storage",
+                          "typeIdentifier": "t_array$_t_struct$_Review_$42871_storage_$dyn_storage",
                           "typeString": "struct VerifiedBite.Review storage ref[] storage ref"
                         }
                       },
-                      "id": 43004,
+                      "id": 42944,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "memberLocation": "1055:4:20",
+                      "memberLocation": "974:4:18",
                       "memberName": "push",
                       "nodeType": "MemberAccess",
-                      "src": "1029:30:20",
+                      "src": "942:36:18",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_ptr_$_t_struct$_Review_$42931_storage_$returns$__$attached_to$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_ptr_$",
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_ptr_$_t_struct$_Review_$42871_storage_$returns$__$attached_to$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_ptr_$",
                         "typeString": "function (struct VerifiedBite.Review storage ref[] storage pointer,struct VerifiedBite.Review storage ref)"
                       }
                     },
-                    "id": 43009,
+                    "id": 42949,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1580,16 +1643,16 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1029:85:20",
+                    "src": "942:91:18",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 43010,
+                  "id": 42950,
                   "nodeType": "ExpressionStatement",
-                  "src": "1029:85:20"
+                  "src": "942:91:18"
                 }
               ]
             },
@@ -1599,18 +1662,18 @@
             "name": "",
             "nameLocation": "-1:-1:-1",
             "parameters": {
-              "id": 42963,
+              "id": 42903,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 42962,
+                  "id": 42902,
                   "mutability": "mutable",
                   "name": "_admin",
-                  "nameLocation": "592:6:20",
+                  "nameLocation": "592:6:18",
                   "nodeType": "VariableDeclaration",
-                  "scope": 43012,
-                  "src": "584:14:20",
+                  "scope": 42952,
+                  "src": "584:14:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1618,10 +1681,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 42961,
+                    "id": 42901,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "584:7:20",
+                    "src": "584:7:18",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1631,58 +1694,212 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "583:16:20"
+              "src": "583:16:18"
             },
             "returnParameters": {
-              "id": 42964,
+              "id": 42904,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "600:0:20"
+              "src": "600:0:18"
             },
-            "scope": 43061,
+            "scope": 43016,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           },
           {
-            "id": 43028,
+            "id": 42966,
             "nodeType": "FunctionDefinition",
-            "src": "1127:149:20",
+            "src": "1046:134:18",
             "nodes": [],
             "body": {
-              "id": 43027,
+              "id": 42965,
               "nodeType": "Block",
-              "src": "1213:63:20",
+              "src": "1126:54:18",
               "nodes": [],
               "statements": [
                 {
                   "expression": {
-                    "id": 43025,
+                    "baseExpression": {
+                      "id": 42961,
+                      "name": "submittedReviews",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 42862,
+                      "src": "1143:16:18",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_$",
+                        "typeString": "mapping(uint256 => struct VerifiedBite.Review storage ref[] storage ref)"
+                      }
+                    },
+                    "id": 42963,
+                    "indexExpression": {
+                      "id": 42962,
+                      "name": "restaurantId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 42954,
+                      "src": "1160:12:18",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1143:30:18",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_Review_$42871_storage_$dyn_storage",
+                      "typeString": "struct VerifiedBite.Review storage ref[] storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 42960,
+                  "id": 42964,
+                  "nodeType": "Return",
+                  "src": "1136:37:18"
+                }
+              ]
+            },
+            "functionSelector": "9d4a2255",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getReviews",
+            "nameLocation": "1055:10:18",
+            "parameters": {
+              "id": 42955,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42954,
+                  "mutability": "mutable",
+                  "name": "restaurantId",
+                  "nameLocation": "1074:12:18",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42966,
+                  "src": "1066:20:18",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42953,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1066:7:18",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1065:22:18"
+            },
+            "returnParameters": {
+              "id": 42960,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42959,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42966,
+                  "src": "1109:15:18",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Review_$42871_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "struct VerifiedBite.Review[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 42957,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 42956,
+                        "name": "Review",
+                        "nameLocations": [
+                          "1109:6:18"
+                        ],
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 42871,
+                        "src": "1109:6:18"
+                      },
+                      "referencedDeclaration": 42871,
+                      "src": "1109:6:18",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Review_$42871_storage_ptr",
+                        "typeString": "struct VerifiedBite.Review"
+                      }
+                    },
+                    "id": 42958,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1109:8:18",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_Review_$42871_storage_$dyn_storage_ptr",
+                      "typeString": "struct VerifiedBite.Review[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1108:17:18"
+            },
+            "scope": 43016,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 42980,
+            "nodeType": "FunctionDefinition",
+            "src": "1186:137:18",
+            "nodes": [],
+            "body": {
+              "id": 42979,
+              "nodeType": "Block",
+              "src": "1260:63:18",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 42977,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 43021,
+                        "id": 42973,
                         "name": "unusedReceiptCodes",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 42926,
-                        "src": "1223:18:20",
+                        "referencedDeclaration": 42866,
+                        "src": "1270:18:18",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_bytes32_$_t_uint256_$",
                           "typeString": "mapping(bytes32 => uint256)"
                         }
                       },
-                      "id": 43023,
+                      "id": 42975,
                       "indexExpression": {
-                        "id": 43022,
+                        "id": 42974,
                         "name": "receiptCode",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 43014,
-                        "src": "1242:11:20",
+                        "referencedDeclaration": 42968,
+                        "src": "1289:11:18",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -1693,7 +1910,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "1223:31:20",
+                      "src": "1270:31:18",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1702,66 +1919,48 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 43024,
+                      "id": 42976,
                       "name": "restaurantId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 43016,
-                      "src": "1257:12:20",
+                      "referencedDeclaration": 42970,
+                      "src": "1304:12:18",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1223:46:20",
+                    "src": "1270:46:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 43026,
+                  "id": 42978,
                   "nodeType": "ExpressionStatement",
-                  "src": "1223:46:20"
+                  "src": "1270:46:18"
                 }
               ]
             },
             "functionSelector": "e4758202",
             "implemented": true,
             "kind": "function",
-            "modifiers": [
-              {
-                "arguments": [],
-                "id": 43019,
-                "kind": "modifierInvocation",
-                "modifierName": {
-                  "id": 43018,
-                  "name": "onlyAdmin",
-                  "nameLocations": [
-                    "1201:9:20"
-                  ],
-                  "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 42960,
-                  "src": "1201:9:20"
-                },
-                "nodeType": "ModifierInvocation",
-                "src": "1201:11:20"
-              }
-            ],
+            "modifiers": [],
             "name": "addReceiptCode",
-            "nameLocation": "1136:14:20",
+            "nameLocation": "1195:14:18",
             "parameters": {
-              "id": 43017,
+              "id": 42971,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 43014,
+                  "id": 42968,
                   "mutability": "mutable",
                   "name": "receiptCode",
-                  "nameLocation": "1159:11:20",
+                  "nameLocation": "1218:11:18",
                   "nodeType": "VariableDeclaration",
-                  "scope": 43028,
-                  "src": "1151:19:20",
+                  "scope": 42980,
+                  "src": "1210:19:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1769,10 +1968,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 43013,
+                    "id": 42967,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1151:7:20",
+                    "src": "1210:7:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1782,13 +1981,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 43016,
+                  "id": 42970,
                   "mutability": "mutable",
                   "name": "restaurantId",
-                  "nameLocation": "1180:12:20",
+                  "nameLocation": "1239:12:18",
                   "nodeType": "VariableDeclaration",
-                  "scope": 43028,
-                  "src": "1172:20:20",
+                  "scope": 42980,
+                  "src": "1231:20:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1796,10 +1995,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 43015,
+                    "id": 42969,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1172:7:20",
+                    "src": "1231:7:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1808,44 +2007,44 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1150:43:20"
+              "src": "1209:43:18"
             },
             "returnParameters": {
-              "id": 43020,
+              "id": 42972,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1213:0:20"
+              "src": "1260:0:18"
             },
-            "scope": 43061,
+            "scope": 43016,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           },
           {
-            "id": 43060,
+            "id": 43015,
             "nodeType": "FunctionDefinition",
-            "src": "1282:272:20",
+            "src": "1329:292:18",
             "nodes": [],
             "body": {
-              "id": 43059,
+              "id": 43014,
               "nodeType": "Block",
-              "src": "1348:206:20",
+              "src": "1415:206:18",
               "nodes": [],
               "statements": [
                 {
                   "assignments": [
-                    43036
+                    42991
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 43036,
+                      "id": 42991,
                       "mutability": "mutable",
                       "name": "restaurantId",
-                      "nameLocation": "1366:12:20",
+                      "nameLocation": "1433:12:18",
                       "nodeType": "VariableDeclaration",
-                      "scope": 43059,
-                      "src": "1358:20:20",
+                      "scope": 43014,
+                      "src": "1425:20:18",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1853,10 +2052,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 43035,
+                        "id": 42990,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1358:7:20",
+                        "src": "1425:7:18",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1865,28 +2064,28 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 43040,
+                  "id": 42995,
                   "initialValue": {
                     "baseExpression": {
-                      "id": 43037,
+                      "id": 42992,
                       "name": "unusedReceiptCodes",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 42926,
-                      "src": "1381:18:20",
+                      "referencedDeclaration": 42866,
+                      "src": "1448:18:18",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_bytes32_$_t_uint256_$",
                         "typeString": "mapping(bytes32 => uint256)"
                       }
                     },
-                    "id": 43039,
+                    "id": 42994,
                     "indexExpression": {
-                      "id": 43038,
+                      "id": 42993,
                       "name": "receiptCode",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 43030,
-                      "src": "1400:11:20",
+                      "referencedDeclaration": 42982,
+                      "src": "1467:11:18",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
                         "typeString": "bytes32"
@@ -1897,14 +2096,14 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "1381:31:20",
+                    "src": "1448:31:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1358:54:20"
+                  "src": "1425:54:18"
                 },
                 {
                   "expression": {
@@ -1914,18 +2113,18 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 43044,
+                        "id": 42999,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
-                          "id": 43042,
+                          "id": 42997,
                           "name": "restaurantId",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 43036,
-                          "src": "1430:12:20",
+                          "referencedDeclaration": 42991,
+                          "src": "1497:12:18",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -1935,21 +2134,21 @@
                         "operator": "!=",
                         "rightExpression": {
                           "hexValue": "30",
-                          "id": 43043,
+                          "id": 42998,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "number",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "1446:1:20",
+                          "src": "1513:1:18",
                           "typeDescriptions": {
                             "typeIdentifier": "t_rational_0_by_1",
                             "typeString": "int_const 0"
                           },
                           "value": "0"
                         },
-                        "src": "1430:17:20",
+                        "src": "1497:17:18",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -1957,14 +2156,14 @@
                       },
                       {
                         "hexValue": "5265636569707420636f6465206e6f7420666f756e64",
-                        "id": 43045,
+                        "id": 43000,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "1449:24:20",
+                        "src": "1516:24:18",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_d98e3d0c59de90c5c5e146b4fc07a26c6151a1c73ac27ec5e443322f40482d64",
                           "typeString": "literal_string \"Receipt code not found\""
@@ -1983,7 +2182,7 @@
                           "typeString": "literal_string \"Receipt code not found\""
                         }
                       ],
-                      "id": 43041,
+                      "id": 42996,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -1991,13 +2190,13 @@
                         -18
                       ],
                       "referencedDeclaration": -18,
-                      "src": "1422:7:20",
+                      "src": "1489:7:18",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 43046,
+                    "id": 43001,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2006,16 +2205,16 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1422:52:20",
+                    "src": "1489:52:18",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 43047,
+                  "id": 43002,
                   "nodeType": "ExpressionStatement",
-                  "src": "1422:52:20"
+                  "src": "1489:52:18"
                 },
                 {
                   "expression": {
@@ -2024,38 +2223,38 @@
                         "arguments": [
                           {
                             "expression": {
-                              "id": 43053,
+                              "id": 43008,
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": -15,
-                              "src": "1527:3:20",
+                              "src": "1594:3:18",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
                                 "typeString": "msg"
                               }
                             },
-                            "id": 43054,
+                            "id": 43009,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
-                            "memberLocation": "1531:6:20",
+                            "memberLocation": "1598:6:18",
                             "memberName": "sender",
                             "nodeType": "MemberAccess",
-                            "src": "1527:10:20",
+                            "src": "1594:10:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
                             }
                           },
                           {
-                            "id": 43055,
+                            "id": 43010,
                             "name": "rating",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 43032,
-                            "src": "1539:6:20",
+                            "referencedDeclaration": 42984,
+                            "src": "1606:6:18",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -2073,18 +2272,18 @@
                               "typeString": "uint256"
                             }
                           ],
-                          "id": 43052,
+                          "id": 43007,
                           "name": "Review",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 42931,
-                          "src": "1520:6:20",
+                          "referencedDeclaration": 42871,
+                          "src": "1587:6:18",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_struct$_Review_$42931_storage_ptr_$",
+                            "typeIdentifier": "t_type$_t_struct$_Review_$42871_storage_ptr_$",
                             "typeString": "type(struct VerifiedBite.Review storage pointer)"
                           }
                         },
-                        "id": 43056,
+                        "id": 43011,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2093,10 +2292,10 @@
                         "nameLocations": [],
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "1520:26:20",
+                        "src": "1587:26:18",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Review_$42931_memory_ptr",
+                          "typeIdentifier": "t_struct$_Review_$42871_memory_ptr",
                           "typeString": "struct VerifiedBite.Review memory"
                         }
                       }
@@ -2104,31 +2303,31 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_struct$_Review_$42931_memory_ptr",
+                          "typeIdentifier": "t_struct$_Review_$42871_memory_ptr",
                           "typeString": "struct VerifiedBite.Review memory"
                         }
                       ],
                       "expression": {
                         "baseExpression": {
-                          "id": 43048,
+                          "id": 43003,
                           "name": "submittedReviews",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 42922,
-                          "src": "1484:16:20",
+                          "referencedDeclaration": 42862,
+                          "src": "1551:16:18",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_$",
                             "typeString": "mapping(uint256 => struct VerifiedBite.Review storage ref[] storage ref)"
                           }
                         },
-                        "id": 43050,
+                        "id": 43005,
                         "indexExpression": {
-                          "id": 43049,
+                          "id": 43004,
                           "name": "restaurantId",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 43036,
-                          "src": "1501:12:20",
+                          "referencedDeclaration": 42991,
+                          "src": "1568:12:18",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -2139,27 +2338,27 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "1484:30:20",
+                        "src": "1551:30:18",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_array$_t_struct$_Review_$42931_storage_$dyn_storage",
+                          "typeIdentifier": "t_array$_t_struct$_Review_$42871_storage_$dyn_storage",
                           "typeString": "struct VerifiedBite.Review storage ref[] storage ref"
                         }
                       },
-                      "id": 43051,
+                      "id": 43006,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "memberLocation": "1515:4:20",
+                      "memberLocation": "1582:4:18",
                       "memberName": "push",
                       "nodeType": "MemberAccess",
-                      "src": "1484:35:20",
+                      "src": "1551:35:18",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_ptr_$_t_struct$_Review_$42931_storage_$returns$__$attached_to$_t_array$_t_struct$_Review_$42931_storage_$dyn_storage_ptr_$",
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_ptr_$_t_struct$_Review_$42871_storage_$returns$__$attached_to$_t_array$_t_struct$_Review_$42871_storage_$dyn_storage_ptr_$",
                         "typeString": "function (struct VerifiedBite.Review storage ref[] storage pointer,struct VerifiedBite.Review storage ref)"
                       }
                     },
-                    "id": 43057,
+                    "id": 43012,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2168,38 +2367,69 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1484:63:20",
+                    "src": "1551:63:18",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 43058,
+                  "id": 43013,
                   "nodeType": "ExpressionStatement",
-                  "src": "1484:63:20"
+                  "src": "1551:63:18"
                 }
               ]
             },
             "functionSelector": "c9543209",
             "implemented": true,
             "kind": "function",
-            "modifiers": [],
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "id": 42987,
+                    "name": "rating",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 42984,
+                    "src": "1407:6:18",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                ],
+                "id": 42988,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 42986,
+                  "name": "validRating",
+                  "nameLocations": [
+                    "1395:11:18"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 42888,
+                  "src": "1395:11:18"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1395:19:18"
+              }
+            ],
             "name": "submitReview",
-            "nameLocation": "1291:12:20",
+            "nameLocation": "1338:12:18",
             "parameters": {
-              "id": 43033,
+              "id": 42985,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 43030,
+                  "id": 42982,
                   "mutability": "mutable",
                   "name": "receiptCode",
-                  "nameLocation": "1312:11:20",
+                  "nameLocation": "1359:11:18",
                   "nodeType": "VariableDeclaration",
-                  "scope": 43060,
-                  "src": "1304:19:20",
+                  "scope": 43015,
+                  "src": "1351:19:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2207,10 +2437,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 43029,
+                    "id": 42981,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1304:7:20",
+                    "src": "1351:7:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -2220,13 +2450,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 43032,
+                  "id": 42984,
                   "mutability": "mutable",
                   "name": "rating",
-                  "nameLocation": "1333:6:20",
+                  "nameLocation": "1380:6:18",
                   "nodeType": "VariableDeclaration",
-                  "scope": 43060,
-                  "src": "1325:14:20",
+                  "scope": 43015,
+                  "src": "1372:14:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2234,10 +2464,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 43031,
+                    "id": 42983,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1325:7:20",
+                    "src": "1372:7:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2246,15 +2476,15 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1303:37:20"
+              "src": "1350:37:18"
             },
             "returnParameters": {
-              "id": 43034,
+              "id": 42989,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1348:0:20"
+              "src": "1415:0:18"
             },
-            "scope": 43061,
+            "scope": 43016,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
@@ -2267,16 +2497,16 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "linearizedBaseContracts": [
-          43061
+          43016
         ],
         "name": "VerifiedBite",
-        "nameLocation": "74:12:20",
-        "scope": 43062,
+        "nameLocation": "74:12:18",
+        "scope": 43017,
         "usedErrors": [],
         "usedEvents": []
       }
     ],
     "license": "UNLICENSED"
   },
-  "id": 20
+  "id": 18
 }

@@ -26,24 +26,24 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Blog = () => {
-  const contractAddress = "0xa85EffB2658CFd81e0B1AaD4f2364CdBCd89F3a1";
-  // const [provider, setProvider] = React.useState(null);
+  const contractAddress = "0x38628490c3043E5D0bbB26d5a0a62fC77342e9d5";
+  const [provider, setProvider] = React.useState(null);
   // const [network, setNetwork] = React.useState("");
-  const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
+  // const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
 
-  // React.useEffect(() => {
-  //   const initializeProvider = async () => {
-  //     if (window.ethereum) {
-  //       await window.ethereum.request({ method: "eth_requestAccounts" });
-  //       console.log("output: " + JSON.stringify(ethers.providers));
-  //       const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //       console.log("provider: " + provider);
-  //       setProvider(provider);
-  //     }
-  //   };
+  React.useEffect(() => {
+    const initializeProvider = async () => {
+      if (window.ethereum) {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        console.log("output: " + JSON.stringify(ethers.providers));
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        console.log("provider: " + provider);
+        setProvider(provider);
+      }
+    };
 
-  //   initializeProvider();
-  // }, []);
+    initializeProvider();
+  }, []);
 
   // React.useEffect(() => {
   //   const getNetwork = async () => {
@@ -57,11 +57,25 @@ const Blog = () => {
   //   getNetwork();
   // }, [provider]);
 
+  let restaurantId = 123; // your restaurantId
+
   const interactWithContract = async () => {
     const contract = new ethers.Contract(contractAddress, contractInfo.abi, provider);
     console.log(await contract.admin());
-    // console.log(await contract.submittedReviews(1, 1));
-    // console.log(result);
+    console.log(await contract.submittedReviews(restaurantId, 0));
+  };
+
+  const interactWithContract2 = async () => {
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    let signer = provider.getSigner();
+    let contract = new ethers.Contract(contractAddress, contractInfo.abi, signer);
+    console.log("admin" + (await contract.admin()));
+    let receiptCode = ethers.utils.formatBytes32String("123123");
+    await contract.addReceiptCode(receiptCode, restaurantId);
+    console.log("success addReceiptCode");
+    let rating = 4;
+    await contract.submitReview(receiptCode, rating);
+    console.log("success submitReview: " + receiptCode + " " + rating);
   };
 
   return (
@@ -70,6 +84,7 @@ const Blog = () => {
         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", gap: 2 }}>
           {/* Connected to network: {network} */}
           <button onClick={interactWithContract}>Interact with Contract</button>
+          <button onClick={interactWithContract2}>Interact with Contract 2</button>
           <MediaCard
             title={"Lizard"}
             rating={4}
