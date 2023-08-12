@@ -11,6 +11,10 @@ contract VerifiedBite {
         uint256 rating;
     }
 
+    event ReceiptCodeStored(bytes32 receiptCode, uint256 restaurantId);
+    event ReviewSubmitted(bytes32 receiptCode, uint256 restaurantId, uint256 rating);
+
+
     modifier validRating(uint256 rating) {
         require(rating >= 1 && rating <= 5, "Rating must be between 1 and 5");
         _;
@@ -38,10 +42,17 @@ contract VerifiedBite {
 
     function addReceiptCode(bytes32 receiptCode, uint256 restaurantId) public onlyAdmin() {
         unusedReceiptCodes[receiptCode] = restaurantId;
+        emit ReceiptCodeStored(receiptCode, restaurantId);
     }
 
-    function submitReview(bytes32 receiptCode, uint256 rating) public validRating(rating) {
-        uint256 restaurantId = unusedReceiptCodes[receiptCode];
+    function getReceiptCode(bytes32 receiptCode) public view returns (uint256) {
+        return unusedReceiptCodes[receiptCode];
+    }
+
+    function submitReview(uint256 receiptCode, uint256 rating) public validRating(rating) {
+        bytes32 receiptCodeHash = keccak256(abi.encodePacked(receiptCode));
+
+        uint256 restaurantId = unusedReceiptCodes[receiptCodeHash];
         require(restaurantId != 0, "Receipt code not found");
         submittedReviews[restaurantId].push(Review(msg.sender, rating));
     }
