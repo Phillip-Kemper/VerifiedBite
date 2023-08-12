@@ -1,12 +1,7 @@
 import * as React from "react";
-import { NextPage } from "next";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import Link from "next/link";
@@ -15,7 +10,6 @@ import { getRestaurantById, restaurants } from "../constants/restaurants";
 import { useEffect, useState } from "react";
 import contractInfo from "../web3/VerifiedBite.json";
 import contractAddressInfo from "../web3/contractAddress.json";
-import keccak256 from "keccak256";
 import MediaCard from "../components/mediaCard";
 import { Button } from "@mui/material";
 
@@ -31,8 +25,6 @@ const Blog = () => {
   const contractAddress = contractAddressInfo.address;
   const [provider, setProvider] = React.useState(null);
   const [reviews, setReviews] = React.useState(new Map());
-  // const [network, setNetwork] = React.useState("");
-  // const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
 
   React.useEffect(() => {
     const initializeProvider = async () => {
@@ -48,38 +40,6 @@ const Blog = () => {
     initializeProvider();
   }, []);
 
-  // React.useEffect(() => {
-  //   const getNetwork = async () => {
-  //     if (provider) {
-  //       const network = await provider.getNetwork();
-  //       console.log("output: " + JSON.stringify(network.name));
-  //       setNetwork(network.name);
-  //     }
-  //   };
-
-  //   getNetwork();
-  // }, [provider]);
-
-  // let restaurantId = 123; // your restaurantId
-
-  // const interactWithContract = async () => {
-  //   const contract = new ethers.Contract(contractAddress, contractInfo.abi, provider);
-  //   console.log(await contract.admin());
-  //   console.log(await contract.submittedReviews(restaurantId, 0));
-  // };
-
-  // const interactWithContract2 = async () => {
-  //   await window.ethereum.request({ method: "eth_requestAccounts" });
-  //   let signer = provider.getSigner();
-  //   let contract = new ethers.Contract(contractAddress, contractInfo.abi, signer);
-  //   let restaurantId = 2;
-  //   let receiptCode = "123123";
-  //   var receiptCodeHash = ethers.utils.solidityKeccak256(["string"], [`${receiptCode}`]);
-  //   receiptCodeHash = ethers.utils.arrayify(receiptCodeHash);
-  //   await contract.addReceiptCode(receiptCodeHash, restaurantId);
-  //   // const result = await contract.unusedReceiptCodes(receiptCodeHash);
-  // };
-
   // useEffect that fetches the restaurant data from the blockchain
   useEffect(() => {
     const getRestaurantData = async () => {
@@ -88,13 +48,12 @@ const Blog = () => {
         restaurants.forEach(async (restaurant) => {
           const restaurantId = restaurant.id;
           const restaurantReviews = await contract.getReviews(restaurantId);
-          // console.log("restaurantReviews: " + JSON.stringify(restaurantReviews));
+          
           const restaurantReviewsReformatted = restaurantReviews.map((review) => {
             return [review[0], parseInt(review[1]["_hex"], 16)];
           });
           reviews[restaurantId] = restaurantReviewsReformatted;
           setReviews(Object.assign({}, reviews, { restaurantId: restaurantReviewsReformatted }));
-          console.log("restaurantReviews " + restaurantId + ": " + JSON.stringify(restaurantReviewsReformatted));
         });
       }
     };
