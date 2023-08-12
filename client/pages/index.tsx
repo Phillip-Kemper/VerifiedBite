@@ -35,26 +35,22 @@ const Blog: NextPage = () => {
         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", gap: 2 }}>
           <MediaCard
             title={"Lizard"}
-            description={`Lizards are a widespread group of squamate reptiles, with over 6,000 
-                species, ranging across all continents except Antarctica`}
+            rating={4}
             imageUrl={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
           />
           <MediaCard
             title={"Lizard"}
-            description={`Lizards are a widespread group of squamate reptiles, with over 6,000 
-                species, ranging across all continents except Antarctica`}
+            rating={3.6}
             imageUrl={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
           />
           <MediaCard
             title={"Lizard"}
-            description={`Lizards are a widespread group of squamate reptiles, with over 6,000 
-                species, ranging across all continents except Antarctica`}
+            rating={1.7}
             imageUrl={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
           />
           <MediaCard
             title={"Lizard"}
-            description={`Lizards are a widespread group of squamate reptiles, with over 6,000 
-                species, ranging across all continents except Antarctica`}
+            rating={2.3}
             imageUrl={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
           />
         </Box>

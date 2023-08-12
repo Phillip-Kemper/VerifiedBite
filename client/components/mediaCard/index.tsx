@@ -5,32 +5,36 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Rating } from '@mui/material';
 
 type MediaCardPropsType = {
   title: string,
-  description: string,
+  rating: number,
   imageUrl: string
 }
 
-export default function MediaCard({title, description, imageUrl}: MediaCardPropsType) {
+export default function MediaCard({title, rating, imageUrl}: MediaCardPropsType) {
   return (
     <Card sx={{maxWidth: 345}}>
       <CardMedia
         component="img"
         height="140"
         image={imageUrl}
-        alt="green iguana"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography variant="h5" component="div">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {description}
-        </Typography>
+        <Rating
+            value={rating}
+            disabled
+            precision={0.5}
+            size="large"
+            sx={{ mt: 2 }}
+          />
+          <Typography>(10 reviews)</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
