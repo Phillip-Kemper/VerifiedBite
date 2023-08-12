@@ -13,6 +13,8 @@ import FastfoodIcon from "@mui/icons-material/Fastfood";
 import Link from "next/link";
 import { ethers } from "ethers";
 
+import { GelatoRelay, SponsoredCallERC2771Request } from "@gelatonetwork/relay-sdk";
+
 import MediaCard from "../components/mediaCard";
 import { Button, TextField } from "@mui/material";
 import Rating from "@mui/material/Rating";
@@ -28,6 +30,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Blog = () => {
+  const relay = new GelatoRelay();
   const contractAddress = contractAddressInfo.address;
   const router = useRouter();
   const [orderCode, setOrderCode] = React.useState("");
@@ -69,11 +72,20 @@ const Blog = () => {
       return;
     }
     await window.ethereum.request({ method: "eth_requestAccounts" });
-    let signer = provider.getSigner();
+    const signer = provider.getSigner();
+    const user = await signer.getAddress();
     let contract = new ethers.Contract(contractAddress, contractInfo.abi, signer);
     let receiptCode = `${orderCode}`;
+    const { data } = await contract.populateTransaction.submitReview(receiptCode, rating);
+    const request = {
+      chainId: 1442,
+      target: contractAddress,
+      data: data,
+      user: user,
+    };
+
     try {
-      await contract.submitReview(receiptCode, rating);
+      await relay.sponsoredCallERC2771(request, provider, process.env.PROVIDER_URL);
     } catch (err) {
       alert("Invalid code: Code has been used before.");
       return;
