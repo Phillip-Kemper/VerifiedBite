@@ -26,20 +26,18 @@ const Blog: NextPage = () => {
   const restaurantId = key?.toString().split("_")[1];
 
   const [isLoading, setIsLoading] = useState(false);
-  const [reviewCode, setReviewCode] = useState("");
+  const [receiptCode, setReceiptCode] = useState("");
 
-  const qrCodeUrl = `http://localhost:3000/submit-review?code=${reviewCode}`;
+  const qrCodeUrl = `http://localhost:3000/submit-review?code=${receiptCode}`;
 
-  const handleRequestReviewCode = async () => {
+  const handleRequestReceiptCode = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post(`/api/review-code`, {
-        restaurantId,
-      });
-      setReviewCode(response.data.reviewCode);
+      const response = await axios.get(`/api/request-receipt-code?restaurantId=${restaurantId}`);
+      setReceiptCode(response.data.receiptCode);
     } catch (error) {
-      // console.error(error);
-      setReviewCode("123456");
+      console.error(error);
+      setReceiptCode("123456");
     } finally {
       setIsLoading(false);
     }
@@ -49,10 +47,10 @@ const Blog: NextPage = () => {
     <>
       <Box sx={{ flexGrow: 1, mt: 20 }}>
         <Grid container spacing={2}>
-          {!reviewCode ? (
+          {!receiptCode ? (
             <Grid item xs={12}>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
-                <Button variant="contained" color="primary" onClick={handleRequestReviewCode} disabled={isLoading}>
+                <Button variant="contained" color="primary" onClick={handleRequestReceiptCode} disabled={isLoading}>
                   {isLoading ? "Loading..." : "Request Review Code"}
                 </Button>
               </Box>
@@ -66,7 +64,7 @@ const Blog: NextPage = () => {
                   </Typography>
                   <Box sx={{ mt: 3, display: "flex", justifyContent: "center", textAlign: "center" }}>
                     <Typography variant="h4" component="div">
-                      {reviewCode}
+                      {receiptCode}
                     </Typography>
                   </Box>
                   <Box sx={{ mt: 3, display: "flex", justifyContent: "center" }}>
