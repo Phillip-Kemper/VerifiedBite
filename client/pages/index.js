@@ -59,25 +59,25 @@ const Blog = () => {
   //   getNetwork();
   // }, [provider]);
 
-  let restaurantId = 123; // your restaurantId
+  // let restaurantId = 123; // your restaurantId
 
-  const interactWithContract = async () => {
-    const contract = new ethers.Contract(contractAddress, contractInfo.abi, provider);
-    console.log(await contract.admin());
-    console.log(await contract.submittedReviews(restaurantId, 0));
-  };
+  // const interactWithContract = async () => {
+  //   const contract = new ethers.Contract(contractAddress, contractInfo.abi, provider);
+  //   console.log(await contract.admin());
+  //   console.log(await contract.submittedReviews(restaurantId, 0));
+  // };
 
-  const interactWithContract2 = async () => {
-    await window.ethereum.request({ method: "eth_requestAccounts" });
-    let signer = provider.getSigner();
-    let contract = new ethers.Contract(contractAddress, contractInfo.abi, signer);
-    let restaurantId = 2;
-    let receiptCode = "123123";
-    var receiptCodeHash = ethers.utils.solidityKeccak256(["string"], [`${receiptCode}`]);
-    receiptCodeHash = ethers.utils.arrayify(receiptCodeHash);
-    await contract.addReceiptCode(receiptCodeHash, restaurantId);
-    // const result = await contract.unusedReceiptCodes(receiptCodeHash);
-  };
+  // const interactWithContract2 = async () => {
+  //   await window.ethereum.request({ method: "eth_requestAccounts" });
+  //   let signer = provider.getSigner();
+  //   let contract = new ethers.Contract(contractAddress, contractInfo.abi, signer);
+  //   let restaurantId = 2;
+  //   let receiptCode = "123123";
+  //   var receiptCodeHash = ethers.utils.solidityKeccak256(["string"], [`${receiptCode}`]);
+  //   receiptCodeHash = ethers.utils.arrayify(receiptCodeHash);
+  //   await contract.addReceiptCode(receiptCodeHash, restaurantId);
+  //   // const result = await contract.unusedReceiptCodes(receiptCodeHash);
+  // };
 
   // useEffect that fetches the restaurant data from the blockchain
   useEffect(() => {
@@ -100,8 +100,8 @@ const Blog = () => {
       <Box sx={{ display: "flex", justifyContent: "center", mt: 6 }}>
         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", gap: 2 }}>
           {/* Connected to network: {network} */}
-          <button onClick={interactWithContract}>Interact with Contract</button>
-          <button onClick={interactWithContract2}>Interact with Contract 2</button>
+          {/* <button onClick={interactWithContract}>Interact with Contract</button>
+          <button onClick={interactWithContract2}>Interact with Contract 2</button> */}
           {restaurants.map((restaurant) => (
             <MediaCard
               title={restaurant.name}
