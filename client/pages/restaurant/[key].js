@@ -66,7 +66,6 @@ const Blog = () => {
         // });
       }
     };
-
     getRestaurantData();
   }, [provider]);
 
@@ -75,7 +74,7 @@ const Blog = () => {
 
   return (
     <>
-      {!isPolygonZkEVM && <Typography variant="h5">For more than just read access, pls connect wallet to Polygon zkEVM Testnet</Typography>}
+      {!isPolygonZkEVM && <Typography variant="h5">For more than just read access and submitting your own review, pls connect wallet to Polygon zkEVM Testnet</Typography>}      
       <Box sx={{ flexGrow: 1, mt: 2 }}>
         {restaurant ? (
           <Grid container direction={"column"} spacing={2} alignContent={"center"} justifyContent={"center"}>

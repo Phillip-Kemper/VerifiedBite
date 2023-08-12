@@ -69,7 +69,7 @@ const Blog = () => {
 
   return (
     <>
-      {!isPolygonZkEVM && <Typography variant="h5">For more than just read access, pls connect wallet to Polygon zkEVM Testnet</Typography>}
+      {!isPolygonZkEVM && <Typography variant="h5">For more than just read access and submitting your own review, pls connect wallet to Polygon zkEVM Testnet</Typography>}
       <Box sx={{ display: "flex", justifyContent: "center", mt: 6 }}>
         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", gap: 2 }}>
           {/* Connected to network: {network} */}
@@ -98,8 +98,8 @@ const Blog = () => {
       </Box>
       <Box sx={{ position: "fixed", bottom: "2rem", right: "2rem" }}>
         <Link href="/submit-review" passHref>
-          <Button variant="contained" color="primary" size="large">
-            <AddIcon /> Submit a Review
+          <Button disabled={!isPolygonZkEVM} variant="contained" color="primary" size="large">
+            <AddIcon/> Submit a Review
           </Button>
         </Link>
       </Box>
