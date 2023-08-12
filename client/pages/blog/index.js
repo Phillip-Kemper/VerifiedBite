@@ -18,7 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-const Blog: NextPage = () => {
+const Blog = () => {
   return (
     <Container maxWidth="lg">
       <Box sx={{ display: 'flex', border: 1, justifyContent: 'center' }}>

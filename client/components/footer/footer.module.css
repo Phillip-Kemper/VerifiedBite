@@ -3,6 +3,8 @@
     flex: 1;
     padding: 2rem 0;
     border-top: 1px solid #eaeaea;
+    margin-top: 50px;
+    margin-bottom: 20px;
     justify-content: center;
     align-items: center;
 }
