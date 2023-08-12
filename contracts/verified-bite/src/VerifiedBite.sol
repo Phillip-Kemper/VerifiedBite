@@ -40,6 +40,7 @@ contract VerifiedBite {
         return submittedReviews[restaurantId];
     }
 
+    // TODO: add onlyAdmin modifier
     function addReceiptCode(bytes32 receiptCode, uint256 restaurantId) public {
         unusedReceiptCodes[receiptCode] = restaurantId;
         emit ReceiptCodeStored(receiptCode, restaurantId);
@@ -55,6 +56,8 @@ contract VerifiedBite {
         uint256 restaurantId = unusedReceiptCodes[receiptCodeHash];
         require(restaurantId != 0, "Receipt code not found");
         submittedReviews[restaurantId].push(Review(msg.sender, rating));
+
+        unusedReceiptCodes[receiptCodeHash] = 0;
     }
 
 }
