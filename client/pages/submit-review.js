@@ -24,19 +24,19 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const Blog: NextPage = () => {
+const Blog = () => {
   const router = useRouter();
   const [orderCode, setOrderCode] = React.useState("");
-  const [rating, setRating] = React.useState<number | null>(null);
+  const [rating, setRating] = (React.useState < number) | (null > null);
 
-  const handleOrderCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOrderCodeChange = (event) => {
     const value = event.target.value;
     if (value.length <= 6 && /^\d*$/.test(value)) {
       setOrderCode(value);
     }
   };
 
-  const handleRatingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRatingChange = (event) => {
     setRating(Number(event.target.value));
   };
 
@@ -45,6 +45,39 @@ const Blog: NextPage = () => {
       setOrderCode(router.query.code.toString());
     }
   }, [router.query.code]);
+
+  const [provider, setProvider] = React.useState(null);
+  React.useEffect(() => {
+    const initializeProvider = async () => {
+      if (window.ethereum) {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        console.log("output: " + JSON.stringify(ethers.providers));
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        console.log("provider: " + provider);
+        setProvider(provider);
+      }
+    };
+
+    initializeProvider();
+  }, []);
+
+  const handleSubmit = async () => {
+    if (!(orderCode.length === 6 && rating)) {
+      alert("Please enter a valid order code and rating.");
+      return;
+    }
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    let signer = provider.getSigner();
+    let contract = new ethers.Contract(contractAddress, contractInfo.abi, signer);
+    console.log("check get admin: " + (await contract.admin()));
+    let receiptCode = ethers.utils.formatBytes32String(`${orderCode}`);
+    // await contract.addReceiptCode(receiptCode, restaurantId);
+    // console.log("success addReceiptCode");
+    // let rating = 4;
+    await contract.submitReview(receiptCode, rating);
+    console.log("success submitReview: " + receiptCode + " " + rating);
+    router.push(`/`);
+  };
 
   return (
     <>
@@ -77,11 +110,9 @@ const Blog: NextPage = () => {
             size="large"
             sx={{ mt: 2 }}
           />
-          <Link href="/" passHref>
-            <Button variant="contained" sx={{ mt: 8 }}>
-              Submit
-            </Button>
-          </Link>
+          <Button variant="contained" sx={{ mt: 8 }} onClick={handleSubmit}>
+            Submit
+          </Button>
         </Box>
       </Box>
     </>
