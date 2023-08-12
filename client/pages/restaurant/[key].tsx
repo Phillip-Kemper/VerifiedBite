@@ -15,18 +15,16 @@ const Blog: NextPage = () => {
   
   const restaurant = getRestaurantById(Number(key));
 
-  // compute restaurant id from key
-  // future: API request to get restaurant based on key + web2 auth
-  // for now, use part of key as restaurant id -> 2uf8h9238rf_3 will be restaurantId 3
-  const restaurantId = key?.toString().split("_")[1];
+  const reviews = [{address: "0x44895A5c92A98dB050D6327cD4b1F2f82D558E6F", rating: 3}, {address: "0x4Bb355DD5Aff93747950D1c623516234697c5b4c", rating: 3}, {address: "0x340CBA3bC8fF77084EcA68Aac14eCE214af39559", rating: 5}, {address: "0x7A7a9D8A6F89136Ace4BC7A8b17C331cac512786", rating: 1}]
 
   const [isLoading, setIsLoading] = useState(false);
   const rating = 4;
+  const numberOfReviews = 15;
 
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, mt: 20 }}>
+      <Box sx={{ flexGrow: 1, mt: 2 }}>
           
           {restaurant ? 
         <Grid container direction={"column"} spacing={2} alignContent={"center"} justifyContent={"center"}>
@@ -34,26 +32,39 @@ const Blog: NextPage = () => {
             <Typography variant="h2">{restaurant.name}</Typography>
           </Grid>
           <Grid item>
-          <Rating value={rating} disabled precision={0.5} size="large" sx={{ mt: 2, opacity: "1.0 !important" }} />
+          <Grid container item alignItems={"center"} spacing={2}> 
+            <Grid item> 
+          <Rating value={rating} disabled precision={0.5} size="large" sx={{ opacity: "1.0 !important" }} />
+             </Grid>
+          <Grid item> 
+            <Typography variant="body1">({numberOfReviews} reviews)</Typography>
+             </Grid>
+           </Grid>
           </Grid>
           <Grid item>
             <Box
               component="img"
               sx={{
-                height: 233,
-                width: 350,
-                maxHeight: { xs: 233, md: 167 },
-                maxWidth: { xs: 350, md: 250 },
+                height: 466,
+                width: 700,
+                maxHeight: { xs: 466, md: 233 },
+                maxWidth: { xs: 700, md: 350 },
                 objectFit: "cover"
               }}
-              style={{
-                objectFit: "cover",}}
               src={restaurant.imageURL}
           />
           </Grid>
           <Grid item>
             <Typography variant="h5">All Reviews:</Typography>
           </Grid>
+          {reviews.map(review => <Grid container item key={review.address} alignItems={"center"} spacing={4}> 
+            <Grid item> 
+            <Typography variant="body1" style={{fontFamily: "'Roboto Mono', monospace"}}>{review.address}</Typography>
+             </Grid><Grid item> 
+             <Rating value={review.rating} disabled precision={1} size="large" sx={{ opacity: "1.0 !important" }} />
+             </Grid>
+          
+           </Grid>)}
           
           </Grid> : <Typography variant="h4" component="div">
           Restaurant does not exist.

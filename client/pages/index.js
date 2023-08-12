@@ -106,7 +106,7 @@ const Blog = () => {
           <button onClick={interactWithContract}>Interact with Contract</button>
           <button onClick={interactWithContract2}>Interact with Contract 2</button>
           {restaurants.map((restaurant) => (
-            <MediaCard title={restaurant.name} rating={4} numberOfReviews={15} imageUrl={restaurant.imageURL} />
+            <MediaCard title={restaurant.name} rating={4} numberOfReviews={15} imageUrl={restaurant.imageURL} restaurantId={restaurant.id}/>
           ))}
         </Box>
       </Box>
