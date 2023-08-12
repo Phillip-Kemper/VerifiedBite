@@ -40,8 +40,7 @@ contract VerifiedBite {
         return submittedReviews[restaurantId];
     }
 
-    // TODO: add onlyAdmin modifier
-    function addReceiptCode(bytes32 receiptCode, uint256 restaurantId) public {
+    function addReceiptCode(bytes32 receiptCode, uint256 restaurantId) public onlyAdmin() {
         unusedReceiptCodes[receiptCode] = restaurantId;
         emit ReceiptCodeStored(receiptCode, restaurantId);
     }
