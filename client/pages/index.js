@@ -27,7 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Blog = () => {
-  const contractAddress = "0xd9abC93F81394Bd161a1b24B03518e0a570bDEAd";
+  const contractAddress = "0xd3b893cd083f07Fe371c1a87393576e7B01C52C6";
   const [provider, setProvider] = React.useState(null);
   // const [network, setNetwork] = React.useState("");
   // const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
@@ -73,13 +73,26 @@ const Blog = () => {
     let contract = new ethers.Contract(contractAddress, contractInfo.abi, signer);
     console.log("admin: " + (await contract.admin()));
     let restaurantId = 123;
-    let receiptCode = 123123;
     // compute keccak256 hash of receiptCode
-    let receiptCodeHash = keccak256(receiptCode2).toString("hex"); //"0x43244635c14605fdbe23fa89b5cf12bd14a14bfb9420f66788dd6914a31d8c7b";
-    // let receiptCodeHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(receiptCode));
+    // let receiptCodeHash = "0x" + keccak256(`${receiptCode}`).toString("hex"); //"0x43244635c14605fdbe23fa89b5cf12bd14a14bfb9420f66788dd6914a31d8c7b";
+    // let receiptCodeHash = keccak256(`${receiptCode}`).toString("hex"); //"0x43244635c14605fdbe23fa89b5cf12bd14a14bfb9420f66788dd6914a31d8c7b";
+    // let receiptCodeHash = keccak256(`${receiptCode}`); //"0x43244635c14605fdbe23fa89b5cf12bd14a14bfb9420f66788dd6914a31d8c7b";
+    // var receiptCodeHash = "0x43244635c14605fdbe23fa89b5cf12bd14a14bfb9420f66788dd6914a31d8c7b";
+    // print type of receiptCodeHash
+
+    // receiptCodeHash = ethers.utils.formatBytes32String(receiptCodeHash);
+
+    let receiptCode = "123123";
+    // var receiptCodeHash = ethers.utils.keccak256(ethers.enc(`${receiptCode}`));
+    var receiptCodeHash = ethers.utils.solidityKeccak256(["string"], [`${receiptCode}`]);
+    console.log("type receiptCodeHash: " + typeof receiptCodeHash);
+    console.log("receiptCodeHash: " + JSON.stringify(receiptCodeHash));
+    receiptCodeHash = ethers.utils.arrayify(receiptCodeHash);
     console.log("receiptCodeHash: " + JSON.stringify(receiptCodeHash));
     await contract.addReceiptCode(receiptCodeHash, restaurantId);
     console.log("success addReceiptCode");
+    const result = await contract.unusedReceiptCodes(receiptCodeHash);
+    console.log("unusedReceiptCodes: " + JSON.stringify(result));
     let rating = 2;
     await contract.submitReview(receiptCode, rating);
     console.log("success submitReview: " + receiptCode + " " + rating);
