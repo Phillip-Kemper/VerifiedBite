@@ -45,10 +45,10 @@ const Blog: NextPage = () => {
             <Box
               component="img"
               sx={{
-                height: 233,
-                width: 350,
-                maxHeight: { xs: 233, md: 167 },
-                maxWidth: { xs: 350, md: 250 },
+                height: 466,
+                width: 700,
+                maxHeight: { xs: 466, md: 233 },
+                maxWidth: { xs: 700, md: 350 },
                 objectFit: "cover"
               }}
               src={restaurant.imageURL}

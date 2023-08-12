@@ -6,15 +6,19 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Rating } from "@mui/material";
+import { useRouter } from "next/router";
 
 type MediaCardPropsType = {
   title: string;
+  restaurantId: number;
   rating: number;
   numberOfReviews: number;
   imageUrl: string;
 };
 
-export default function MediaCard({ title, rating, numberOfReviews, imageUrl }: MediaCardPropsType) {
+export default function MediaCard({ title, rating, restaurantId, numberOfReviews, imageUrl }: MediaCardPropsType) {
+  const router = useRouter();
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia component="img" height="140" image={imageUrl} />
@@ -26,7 +30,7 @@ export default function MediaCard({ title, rating, numberOfReviews, imageUrl }: 
         <Typography>({numberOfReviews} reviews)</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" onClick={() => router.push('/restaurant/' + restaurantId)}>Learn More</Button>
       </CardActions>
     </Card>
   );
