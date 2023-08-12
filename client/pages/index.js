@@ -11,6 +11,7 @@ import AddIcon from "@mui/icons-material/Add";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import Link from "next/link";
 import { ethers } from "ethers";
+import { getRestaurantById, restaurants } from "../constants/restaurants";
 import { useEffect, useState } from "react";
 import contractInfo from "../web3/VerifiedBite.json";
 
@@ -84,31 +85,12 @@ const Blog = () => {
         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", gap: 2 }}>
           {/* Connected to network: {network} */}
           <button onClick={interactWithContract}>Interact with Contract</button>
-          <button onClick={interactWithContract2}>Interact with Contract 2</button>
-          <MediaCard
-            title={"Lizard"}
+          {restaurants.map(restaurant => <MediaCard
+            title={restaurant.name}
             rating={4}
             numberOfReviews={15}
-            imageUrl={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
-          />
-          <MediaCard
-            title={"Lizard"}
-            rating={3.6}
-            numberOfReviews={10}
-            imageUrl={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
-          />
-          <MediaCard
-            title={"Lizard"}
-            rating={1.7}
-            numberOfReviews={13}
-            imageUrl={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
-          />
-          <MediaCard
-            title={"Lizard"}
-            rating={2.3}
-            numberOfReviews={10}
-            imageUrl={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
-          />
+            imageUrl={restaurant.imageURL}
+          />)}
         </Box>
       </Box>
       <Box sx={{ position: "fixed", bottom: "2rem", right: "2rem" }}>
