@@ -19,6 +19,7 @@ const Blog = () => {
   const restaurant = getRestaurantById(Number(key));
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isPolygonZkEVM, setIsPolygonZkEVM] = React.useState(true);
   const rating = 4;
 
   const contractAddress = contractAddressInfo.address;
@@ -33,6 +34,11 @@ const Blog = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         console.log("provider: " + provider);
         setProvider(provider);
+        const network = await provider.getNetwork();
+        if(network.chainId != 1442) {
+          setIsPolygonZkEVM(false);
+          setProvider(new ethers.providers.JsonRpcProvider("https://rpc.public.zkevm-test.net/"));
+        }
       }
     };
 
@@ -69,6 +75,7 @@ const Blog = () => {
 
   return (
     <>
+      {!isPolygonZkEVM && <Typography variant="h5">For more than just read access, pls connect wallet to Polygon zkEVM Testnet</Typography>}
       <Box sx={{ flexGrow: 1, mt: 2 }}>
         {restaurant ? (
           <Grid container direction={"column"} spacing={2} alignContent={"center"} justifyContent={"center"}>

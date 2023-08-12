@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import contractInfo from "../web3/VerifiedBite.json";
 import contractAddressInfo from "../web3/contractAddress.json";
 import MediaCard from "../components/mediaCard";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -24,6 +24,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const Blog = () => {
   const contractAddress = contractAddressInfo.address;
   const [provider, setProvider] = React.useState(null);
+  const [isPolygonZkEVM, setIsPolygonZkEVM] = React.useState(true);
   const [reviews, setReviews] = React.useState(new Map());
 
   React.useEffect(() => {
@@ -34,6 +35,11 @@ const Blog = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         console.log("provider: " + provider);
         setProvider(provider);
+        const network = await provider.getNetwork();
+        if(network.chainId != 1442) {
+          setIsPolygonZkEVM(false);
+          setProvider(new ethers.providers.JsonRpcProvider("https://rpc.public.zkevm-test.net/"));
+        }
       }
     };
 
@@ -63,6 +69,7 @@ const Blog = () => {
 
   return (
     <>
+      {!isPolygonZkEVM && <Typography variant="h5">For more than just read access, pls connect wallet to Polygon zkEVM Testnet</Typography>}
       <Box sx={{ display: "flex", justifyContent: "center", mt: 6 }}>
         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", gap: 2 }}>
           {/* Connected to network: {network} */}
