@@ -30,21 +30,25 @@ const Blog: NextPage = () => {
           <MediaCard
             title={"Lizard"}
             rating={4}
+            numberOfReviews={15}
             imageUrl={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
           />
           <MediaCard
             title={"Lizard"}
             rating={3.6}
+            numberOfReviews={10}
             imageUrl={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
           />
           <MediaCard
             title={"Lizard"}
             rating={1.7}
+            numberOfReviews={13}
             imageUrl={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
           />
           <MediaCard
             title={"Lizard"}
             rating={2.3}
+            numberOfReviews={10}
             imageUrl={"https://mui.com/static/images/cards/contemplative-reptile.jpg"}
           />
         </Box>

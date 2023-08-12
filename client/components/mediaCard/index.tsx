@@ -10,10 +10,11 @@ import { Rating } from "@mui/material";
 type MediaCardPropsType = {
   title: string;
   rating: number;
+  numberOfReviews: number;
   imageUrl: string;
 };
 
-export default function MediaCard({ title, rating, imageUrl }: MediaCardPropsType) {
+export default function MediaCard({ title, rating, numberOfReviews, imageUrl }: MediaCardPropsType) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia component="img" height="140" image={imageUrl} />
@@ -21,8 +22,8 @@ export default function MediaCard({ title, rating, imageUrl }: MediaCardPropsTyp
         <Typography variant="h5" component="div">
           {title}
         </Typography>
-        <Rating value={rating} disabled precision={0.5} size="large" sx={{ mt: 2, opacity: "1.0 !important" }} />
-        <Typography>(10 reviews)</Typography>
+        <Rating value={rating} disabled precision={0.5} size="medium" sx={{ mt: 2, opacity: "1.0 !important" }} />
+        <Typography>({numberOfReviews} reviews)</Typography>
       </CardContent>
       <CardActions>
         <Button size="small">Learn More</Button>
