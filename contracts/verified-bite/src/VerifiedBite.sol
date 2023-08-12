@@ -50,7 +50,7 @@ contract VerifiedBite {
         return unusedReceiptCodes[receiptCode];
     }
 
-    function submitReview(uint256 receiptCode, uint256 rating) public validRating(rating) {
+    function submitReview(string memory receiptCode, uint256 rating) public validRating(rating) {
         bytes32 receiptCodeHash = keccak256(abi.encodePacked(receiptCode));
 
         uint256 restaurantId = unusedReceiptCodes[receiptCodeHash];
