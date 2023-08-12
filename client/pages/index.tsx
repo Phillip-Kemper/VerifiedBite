@@ -24,13 +24,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Blog: NextPage = () => {
   return (
-    <Container maxWidth="lg">
-      <Box sx={{ display: "flex", border: 1, justifyContent: "center", mt: 3 }}>
-        <Typography variant="h2" component="div">
-          <FastfoodIcon fontSize="large" />
-          Verified Bite
-        </Typography>
-      </Box>
+    <>
       <Box sx={{ display: "flex", justifyContent: "center", mt: 6 }}>
         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", gap: 2 }}>
           <MediaCard
@@ -62,7 +56,7 @@ const Blog: NextPage = () => {
           </Button>
         </Link>
       </Box>
-    </Container>
+    </>
   );
 };
 
