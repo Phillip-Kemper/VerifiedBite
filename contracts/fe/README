@@ -1,0 +1,9 @@
+# FE-ntastic version of Verified Bite 🍔
+This directory contains a simplified version of our Verified Bite contract - written in FE 🎉.
+
+The contract can be found here:
+./verifiedbite.fe
+
+It is deployed on ZKEvm, as shown here:
+https://testnet-zkevm.polygonscan.com/address/0x5841e2b1b22e1D3796D89e78659efd7e71e6825E
+

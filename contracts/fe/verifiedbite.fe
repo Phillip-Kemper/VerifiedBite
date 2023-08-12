@@ -1,0 +1,28 @@
+struct Review {
+    pub userId: address
+    pub rating: u256
+}
+
+contract VerifiedBite{
+
+    admin: address
+    submittedReviews: Map<u256, Array<Review, 10>>
+    unusedReceiptCodes: Map<u256, u256>
+
+    pub fn getReviews(self, restaurantId: u256) -> Array<Review, 10> {
+        return self.submittedReviews[restaurantId].to_mem()
+    }
+
+    pub fn addReceiptCode(mut self, receiptCodeHash: u256, restaurantId: u256) {
+        self.unusedReceiptCodes[receiptCodeHash] = restaurantId
+    }
+
+    pub fn submitReview(mut self, ctx: Context, receiptCode: (u256, u256), rating: u256, reviewIdx: u256) {
+        assert rating >= 1 and rating <= 5
+        let receiptCodeHash: u256 = keccak256(receiptCode.abi_encode())
+        let restaurantId: u256 = self.unusedReceiptCodes[receiptCodeHash]
+        assert restaurantId != 0
+        self.submittedReviews[restaurantId][reviewIdx] = Review(userId: ctx.msg_sender(), rating)
+        self.unusedReceiptCodes[receiptCodeHash] = 0
+    }
+}

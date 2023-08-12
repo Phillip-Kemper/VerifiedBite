@@ -40,9 +40,9 @@ contract VerifiedBite {
         return submittedReviews[restaurantId];
     }
 
-    function addReceiptCode(bytes32 receiptCode, uint256 restaurantId) public onlyAdmin() {
-        unusedReceiptCodes[receiptCode] = restaurantId;
-        emit ReceiptCodeStored(receiptCode, restaurantId);
+    function addReceiptCode(bytes32 receiptCodeHash, uint256 restaurantId) public onlyAdmin() {
+        unusedReceiptCodes[receiptCodeHash] = restaurantId;
+        emit ReceiptCodeStored(receiptCodeHash, restaurantId);
     }
 
     function getReceiptCode(bytes32 receiptCode) public view returns (uint256) {
