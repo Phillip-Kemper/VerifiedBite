@@ -1,12 +1,15 @@
 import HomeHeader from "../homeHeader";
 import Footer from "../footer";
+import { Container } from "@mui/material";
 
 const Layout = ({ children }: JSX.ElementChildrenAttribute) => {
   return (
     <>
-      {/* <HomeHeader /> */}
-      {children}
-      <Footer />
+      <Container maxWidth="lg">
+        <HomeHeader />
+        {children}
+        <Footer />
+      </Container>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -24,6 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Blog: NextPage = () => {
+  const router = useRouter();
   const [orderCode, setOrderCode] = React.useState("");
   const [rating, setRating] = React.useState<number | null>(null);
 
@@ -38,14 +40,14 @@ const Blog: NextPage = () => {
     setRating(Number(event.target.value));
   };
 
+  React.useEffect(() => {
+    if (router.query.code) {
+      setOrderCode(router.query.code.toString());
+    }
+  }, [router.query.code]);
+
   return (
-    <Container maxWidth="lg">
-      <Box sx={{ display: "flex", border: 1, justifyContent: "center", mt: 3 }}>
-        <Typography variant="h2" component="div">
-          <FastfoodIcon fontSize="large" />
-          Verified Bite
-        </Typography>
-      </Box>
+    <>
       <Box sx={{ display: "flex", justifyContent: "center", mt: 20 }}>
         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column" }}>
           <Typography variant="body1" component="div">
@@ -82,7 +84,7 @@ const Blog: NextPage = () => {
           </Link>
         </Box>
       </Box>
-    </Container>
+    </>
   );
 };
 
