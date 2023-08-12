@@ -30,6 +30,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const Blog = () => {
   const contractAddress = contractAddressInfo.address;
   const [provider, setProvider] = React.useState(null);
+  const [reviews, setReviews] = React.useState(new Map());
   // const [network, setNetwork] = React.useState("");
   // const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
 
@@ -87,13 +88,15 @@ const Blog = () => {
         restaurants.forEach(async (restaurant) => {
           const restaurantId = restaurant.id;
           const restaurantReviews = await contract.getReviews(restaurantId);
-          console.log("restaurantReviews " + restaurantId + ": " + JSON.stringify(restaurantReviews));
+          const restaurantReviewsReformatted = restaurantReviews.map((review) => [review[0], parseInt(review[1]["hex"], 16)])
+          reviews[restaurantId] = restaurantReviewsReformatted;
+          setReviews(Object.assign({}, reviews, {restaurantId: restaurantReviewsReformatted}));
+          console.log("restaurantReviews " + restaurantId + ": " + JSON.stringify(restaurantReviewsReformatted));
         });
       }
     };
 
     getRestaurantData();
-  }, [provider]);
 
   return (
     <>
@@ -102,15 +105,25 @@ const Blog = () => {
           {/* Connected to network: {network} */}
           <button onClick={interactWithContract}>Interact with Contract</button>
           <button onClick={interactWithContract2}>Interact with Contract 2</button>
-          {restaurants.map((restaurant) => (
+          {restaurants.map((restaurant) => 
+            (reviews[restaurant.id] != undefined && reviews[restaurant.id]).length > 0 ? 
             <MediaCard
+              key={restaurant.id}
               title={restaurant.name}
-              rating={4}
-              numberOfReviews={15}
+              rating={reviews[restaurant.id].reduce((acc, cur) => acc + cur[1]) / reviews[restaurant.id].length}
+              numberOfReviews={reviews[restaurant.id].length}
               imageUrl={restaurant.imageURL}
               restaurantId={restaurant.id}
-            />
-          ))}
+            /> :
+            <MediaCard
+            key={restaurant.id}
+            title={restaurant.name}
+            rating={0}
+            numberOfReviews={0}
+            imageUrl={restaurant.imageURL}
+            restaurantId={restaurant.id}
+          />
+          )}
         </Box>
       </Box>
       <Box sx={{ position: "fixed", bottom: "2rem", right: "2rem" }}>
