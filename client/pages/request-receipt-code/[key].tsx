@@ -28,7 +28,7 @@ const Blog: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [receiptCode, setReceiptCode] = useState("");
 
-  const qrCodeUrl = `http://localhost:3000/submit-review?code=${receiptCode}`;
+  const qrCodeUrl = `https://verified-bite.vercel.app/submit-review?code=${receiptCode}`;
 
   const handleRequestReceiptCode = async () => {
     setIsLoading(true);
