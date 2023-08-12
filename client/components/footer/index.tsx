@@ -19,7 +19,7 @@ const Footer = () => {
                 <Image src="/gelato.png" alt="Logo" width={120} height={60} />
               </span>
             </a>
-            <a href="https://polygon.technology/polygon-zkevm" target="_blank" rel="noopener noreferrer">
+            <a href="https://fe-lang.org/" target="_blank" rel="noopener noreferrer">
               <span className={styles.logo}>
                 <Image src="/fe-logo.png" alt="Logo" width={33} height={40} />
               </span>
